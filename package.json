@@ -1,0 +1,19 @@
+{
+	"name": "@time-input-polyfill/tests",
+	"version": "1.0.0",
+	"description": "A set of Cypress tests for testing that time-input polyfills behave as expected.",
+	"main": "index.js",
+	"scripts": {
+		"test": "run-p start cy"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Dan503/time-input-polyfill-tests.git"
+	},
+	"author": "Daniel Tonon",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Dan503/time-input-polyfill-tests/issues"
+	},
+	"homepage": "https://github.com/Dan503/time-input-polyfill-tests#readme"
+}
