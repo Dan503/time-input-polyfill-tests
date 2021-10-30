@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react'
+import TimeInputPolyfill from '@time-input-polyfill/react'
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [value, setValue] = useState<string>()
+
+	useEffect(() => {
+		console.log({ value })
+	}, [value])
+
+	return (
+		<div className="App">
+			<label htmlFor="test">Time input polyfill</label>
+			<br />
+			<TimeInputPolyfill
+				id="test"
+				value={value}
+				setValue={setValue}
+				forcePolyfill
+			/>
+		</div>
+	)
 }
 
-export default App;
+export default App
