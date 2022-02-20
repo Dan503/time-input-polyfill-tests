@@ -3,14 +3,14 @@ import { cySelectSegment, forcedPolyfillId } from "."
 
 export const demoSiteUrl = 'http://localhost:3000'
 
-interface LoadTestPageParams {
-	htmlFileOrUrl?: string
+export interface LoadTestPageParams {
+	url?: string
 	segment?: Segment
 	polyfillId?: string
 }
 
-export const loadTestPage = ({ segment, htmlFileOrUrl = demoSiteUrl, polyfillId = forcedPolyfillId }: LoadTestPageParams = {}) => {
-	return cy.visit(htmlFileOrUrl).wait(100).then(() => {
+export const loadTestPage = ({ segment, url = demoSiteUrl, polyfillId = forcedPolyfillId }: LoadTestPageParams = {}) => {
+	return cy.visit(url).wait(100).then(() => {
 		if (segment) {
 			return cySelectSegment(segment)
 		}
