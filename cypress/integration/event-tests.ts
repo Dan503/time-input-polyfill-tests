@@ -1,24 +1,25 @@
+import { eventTestsId } from "../../src/TestComponent"
 import { loadTestPage, EventName, AltEventName } from "../support"
 
-const eventsTestInput = () => cy.get('#Events-test-localhost-only-input')
+const eventTestsInput = () => cy.get(`#${eventTestsId}`)
 
-const eventValue = () => cy.get('#events-test-value')
-const eventName = () => cy.get('#events-test-eventName')
-const eventAltName = () => cy.get('#events-test-altEventName')
+const eventValue = () => cy.get(`#${eventTestsId}-value`)
+const eventName = () => cy.get(`#${eventTestsId}-eventName`)
+const eventAltName = () => cy.get(`#${eventTestsId}-altEventName`)
 
-const hasValue = (value: string) => () => eventValue().should('have.text', value).then(eventsTestInput)
-const hasName = (name: EventName) => () => eventName().should('have.text', name).then(eventsTestInput)
-const hasAltName = (name: AltEventName) => () => eventAltName().should('have.text', name).then(eventsTestInput)
+const hasValue = (value: string) => () => eventValue().should('have.text', value).then(eventTestsInput)
+const hasName = (name: EventName) => () => eventName().should('have.text', name).then(eventTestsInput)
+const hasAltName = (name: AltEventName) => () => eventAltName().should('have.text', name).then(eventTestsInput)
 
-const keyDown = () => eventsTestInput().trigger('keydown', { key: 'ArrowUp' })
-const keyUp = () => eventsTestInput().trigger('keyup', { key: 'ArrowUp' })
+const keyDown = () => eventTestsInput().trigger('keydown', { key: 'ArrowUp' })
+const keyUp = () => eventTestsInput().trigger('keyup', { key: 'ArrowUp' })
 
-const mouseDown = () => eventsTestInput().trigger('mousedown')
-const mouseUp = () => eventsTestInput().trigger('mouseup')
+const mouseDown = () => eventTestsInput().trigger('mousedown')
+const mouseUp = () => eventTestsInput().trigger('mouseup')
 
 describe('Event tests', () => {
 	it('ensures events work', () => {
-		loadTestPage({ polyfillId: 'Events-test-localhost-only-input' })
+		loadTestPage({ polyfillId: eventTestsId })
 			.then(hasValue('default'))
 			.then(hasName('none'))
 			.then(hasAltName('none'))

@@ -1,6 +1,7 @@
 import { cyInput, cySelectSegment, hasReturnVal, loadTestPage, use } from "../../support"
+import { testId } from "../../../src/TestComponent"
 
-const clickBtn1 = () => cy.get('#Polyfill-demo-button-1').click().wait(10).then(cyInput)
+const clickBtn1 = () => cy.get(`#${testId}-button-1`).click().wait(10).then(cyInput)
 
 export function button_1() {
 	describe('Button 1 - "07:15 AM"', () => {

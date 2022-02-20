@@ -1,8 +1,10 @@
 import { Segment, toLeadingZero } from "@time-input-polyfill/utils"
+import { label, testId } from '../../src/TestComponent'
 
-export const forcedPolyfillId = 'Polyfill-demo-input'
+export const forcedPolyfillId = testId
 export const _forcedPolyfillId = `#${forcedPolyfillId}`
 
+// TODO: this should be exported from "@time-input-polyfill/utils", not stored locally here
 export const a11yId = 'time-input-polyfill-accessibility-block'
 export const _a11yId = `#${a11yId}`
 
@@ -10,7 +12,7 @@ export const cyInput = () => cy.get(_forcedPolyfillId)
 export const cyA11y = () => cy.get(_a11yId)
 export const $input = (jQueryInput: JQuery<HTMLElement>) => jQueryInput[0] as HTMLInputElement
 
-export const hasReturnVal = (expectation: string) => () => cy.get('#Polyfill-demo-return-value').wait(10).should('have.text', expectation).then(cyInput)
+export const hasReturnVal = (expectation: string) => () => cy.get(`#${testId}-return-value`).wait(10).should('have.text', expectation).then(cyInput)
 
 interface A11yInitialHtmlReturn {
 	hrs12: string
@@ -25,7 +27,7 @@ export const a11yInitialHtml = (value?: number | string): A11yInitialHtmlReturn 
 		hrs12,
 		minutes: `<p>Minutes spin button ${value || 30}.</p>`,
 		mode: `<p>AM/PM spin button ${value || 'PM'}.</p>`,
-		focus: `<p>Polyfill demo grouping ${toLeadingZero(value || 8)}:30 PM.</p>` + hrs12
+		focus: `<p>${label} grouping ${toLeadingZero(value || 8)}:30 PM.</p>` + hrs12
 	})
 }
 
