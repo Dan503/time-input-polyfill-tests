@@ -75,8 +75,22 @@ export class Utils {
 			backspace: () => this.cyInput().trigger('keydown', { key: 'Backspace' }).trigger('keyup', { key: 'Backspace' }).wait(10)
 		}
 
+		// `this` isn't always defined. Have to force it to get bound correctly using this method :(
 		// https://stackoverflow.com/questions/4011793/this-is-undefined-in-javascript-class-methods
-		this.cySelectSegment = this.cySelectSegment.bind(this)
+		const bind = (key: keyof Utils) => { this[key] = (this[key] as any).bind(this) }
+		bind('loadTestPage')
+		bind('loadPrimaryInput')
+		bind('loadEventsInput')
+		bind('cyInput')
+		bind('cyA11y')
+		bind('cySelectSegment')
+		bind('$input')
+		bind('hasReturnVal')
+		bind('a11yInitialHtml')
+		bind('a11yHasExpectedHtml')
+		bind('sendFocus')
+		bind('setTime')
+		bind('clearAllSegments')
 	}
 
 	loadTestPage({ segment, polyfillId, url = this.localHostUrl, }: LoadTestPageParams = {}) {
@@ -124,7 +138,9 @@ export class Utils {
 	}
 
 	a11yHasExpectedHtml(expectedHtml: string) {
-		return () => this.cyA11y().wait(10).should('have.html', expectedHtml).then(this.cyInput)
+		return () => {
+			this.cyA11y().wait(10).should('have.html', expectedHtml).then(this.cyInput)
+		}
 	}
 
 	sendFocus = () => this.cyInput().focus().wait(100)
