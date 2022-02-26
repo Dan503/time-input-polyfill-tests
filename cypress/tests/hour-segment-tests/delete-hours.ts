@@ -1,17 +1,18 @@
-import { loadTestPage } from "../../support/loadTestPage"
-import { a11yHasExpectedHtml, use, hasReturnVal } from "../../support/utils"
+import { Utils } from "../../support"
 
-export function deleteHours() {
+export function deleteHours(utils: Utils) {
+	const { loadPrimaryInput, a11yHasExpectedHtml, use, hasReturnVal } = utils
+
 	describe('delete hours', () => {
 		it('Should clear hours on delete key press', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.del)
 				.should('have.value', '--:30 PM')
 				.then(a11yHasExpectedHtml(`<p>blank.</p>`))
 				.then(hasReturnVal(''))
 		})
 		it('Should clear hours on backspace key press', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.backspace)
 				.should('have.value', '--:30 PM')
 				.then(a11yHasExpectedHtml(`<p>blank.</p>`))

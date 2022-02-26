@@ -1,14 +1,16 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { cyInput, hasReturnVal, loadTestPage, setTime, use } from "../../support"
+import type { Utils } from "../../support"
 
-export const hrs24Values = () => {
+export const hrs24Values = (utils: Utils) => {
+	const { loadPrimaryInput, cyInput, hasReturnVal, use, setTime } = utils
+
 	describe('24 hour tests', () => {
 		increment()
 		decrement()
 
 		function increment() {
 			it('increment 00:30 to 23:30', () => {
-				loadTestPage().then(() => {
+				loadPrimaryInput().then(() => {
 					setTime('12:30 AM', 'hrs12').then(() => {
 						for (let i = 0; i < 12; i++) {
 							cyInput().then(hasReturnVal(`${toLeadingZero(i)}:30`)).then(use.upArrow)
@@ -26,7 +28,7 @@ export const hrs24Values = () => {
 
 		function decrement() {
 			it('decrement 00:30 to 23:30', () => {
-				loadTestPage().then(() => {
+				loadPrimaryInput().then(() => {
 					setTime('11:30 PM', 'hrs12').then(() => {
 						for (let i = 23; i > 12; i--) {
 							cyInput().then(hasReturnVal(`${toLeadingZero(i)}:30`)).then(use.downArrow)

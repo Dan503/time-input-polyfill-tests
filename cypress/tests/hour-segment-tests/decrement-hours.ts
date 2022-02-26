@@ -1,9 +1,11 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { a11yHasExpectedHtml, hasReturnVal, loadTestPage, use } from "../../support"
+import { Utils } from "../../support"
 
-export function decrementHours() {
+export function decrementHours(utils: Utils) {
+	const { loadPrimaryInput, a11yHasExpectedHtml, hasReturnVal, use } = utils
+
 	it('Should decrement hours as expected on down key press', () => {
-		loadTestPage({ segment: 'hrs12' }).then(() => {
+		loadPrimaryInput({ segment: 'hrs12' }).then(() => {
 			let a = 7
 			while (a > 0) {
 				use.downArrow().should('have.value', `0${a}:30 PM`).then(a11yHasExpectedHtml(`<p>${a}.</p>`)).then(hasReturnVal(`${a + 12}:30`))

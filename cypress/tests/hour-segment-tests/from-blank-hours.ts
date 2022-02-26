@@ -1,7 +1,8 @@
-import { loadTestPage } from "../../support/loadTestPage"
-import { clearAllSegments, use, a11yHasExpectedHtml, hasReturnVal } from "../../support/utils"
+import { Utils } from "../../support"
 
-export function fromBlankHours() {
+export function fromBlankHours(utils: Utils) {
+	const { loadPrimaryInput, clearAllSegments, use, a11yHasExpectedHtml, hasReturnVal } = utils
+
 	describe('from blank hours', () => {
 		incrementBlankHours()
 		decrementBlankHours()
@@ -9,7 +10,7 @@ export function fromBlankHours() {
 		function incrementBlankHours() {
 			describe('increment blank hours', () => {
 				it('Should increment blank hours --:30 PM to 01:30 PM', () => {
-					loadTestPage({ segment: 'hrs12' })
+					loadPrimaryInput({ segment: 'hrs12' })
 						.then(use.del)
 						.should('have.value', '--:30 PM')
 						.then(use.upArrow)
@@ -19,7 +20,7 @@ export function fromBlankHours() {
 				})
 
 				it('Should increment blank hours from --:-- -- to 01:-- --', () => {
-					loadTestPage({ segment: 'hrs12' }).then(() =>
+					loadPrimaryInput({ segment: 'hrs12' }).then(() =>
 						clearAllSegments('hrs12')
 							.then(use.upArrow)
 							.should('have.value', '01:-- --')
@@ -33,7 +34,7 @@ export function fromBlankHours() {
 		function decrementBlankHours() {
 			describe('decrement blank hours', () => {
 				it('Should decrement blank hours --:30 PM to 12:30 PM', () => {
-					loadTestPage({ segment: 'hrs12' })
+					loadPrimaryInput({ segment: 'hrs12' })
 						.then(use.del)
 						.should('have.value', '--:30 PM')
 						.then(use.downArrow)
@@ -43,7 +44,7 @@ export function fromBlankHours() {
 				})
 
 				it('Should decrement blank hours from --:-- -- to 12:-- --', () => {
-					loadTestPage({ segment: 'hrs12' }).then(() =>
+					loadPrimaryInput({ segment: 'hrs12' }).then(() =>
 						clearAllSegments('hrs12')
 							.then(use.downArrow)
 							.should('have.value', '12:-- --')
