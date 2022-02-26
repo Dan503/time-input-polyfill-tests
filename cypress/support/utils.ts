@@ -1,6 +1,7 @@
 import type { Segment } from "@time-input-polyfill/utils"
 import { toLeadingZero, a11yID } from "@time-input-polyfill/utils"
-import { loadTestPage, LoadTestPageParams } from "./loadTestPage"
+
+export const demoSiteUrl = 'http://localhost:3000'
 
 type GetCyElem = () => Cypress.Chainable<JQuery<HTMLElement>>
 
@@ -44,6 +45,12 @@ export interface Use {
 	backspace: GetCyElem
 }
 
+interface LoadTestPageParams {
+	url?: string
+	segment?: Segment
+	polyfillId?: string
+}
+
 export class Utils {
 	labels: Labels
 	IDs: IDs
@@ -71,14 +78,21 @@ export class Utils {
 		}
 	}
 
-	loadPrimaryInput = (params?: LoadTestPageParams) => loadTestPage({
-		url: this.localHostUrl,
+	loadTestPage({ segment, polyfillId, url = this.localHostUrl, }: LoadTestPageParams = {}) {
+		return cy.visit(url).wait(100).then(() => {
+			if (segment) {
+				return this.cySelectSegment(segment)
+			}
+			return cy.get(`#${polyfillId}`).wait(10)
+		})
+	}
+
+	loadPrimaryInput = (params?: LoadTestPageParams) => this.loadTestPage({
 		polyfillId: this.IDs.primaryTestsId,
 		...params
 	})
 
-	loadEventsInput = (params?: LoadTestPageParams) => loadTestPage({
-		url: this.localHostUrl,
+	loadEventsInput = (params?: LoadTestPageParams) => this.loadTestPage({
 		polyfillId: this.IDs.eventTestsId,
 		...params
 	})
