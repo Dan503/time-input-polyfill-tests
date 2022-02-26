@@ -14,16 +14,6 @@ export interface TimeInputTestSuiteParams {
 	localHostUrl: string
 }
 
-interface Tests {
-	buttons: ButtonTests
-	hours: HourSegmentTests
-	minutes: MinuteSegmentTests
-	mode: ModeSegmentTests,
-	manualEntry: ManualEntryTests
-	segmentNavigation: SegmentNavigationTests
-	events: () => void
-}
-
 export class TimeInputTestSuite {
 	labels: Labels
 	IDs: IDs
@@ -34,14 +24,37 @@ export class TimeInputTestSuite {
 		this.utils = new Utils({ primaryTestsLabel, eventTestsLabel, localHostUrl })
 		this.labels = this.utils.labels
 		this.IDs = this.utils.IDs
-		this.tests = {
-			buttons: new ButtonTests(this.utils),
-			hours: new HourSegmentTests(this.utils),
-			minutes: new MinuteSegmentTests(this.utils),
-			mode: new ModeSegmentTests(this.utils),
-			manualEntry: new ManualEntryTests(this.utils),
-			segmentNavigation: new SegmentNavigationTests(this.utils),
-			events: () => eventTests(this.utils)
+		this.tests = new Tests(this.utils)
+	}
+}
+
+class Tests {
+	buttons: ButtonTests
+	hours: HourSegmentTests
+	minutes: MinuteSegmentTests
+	mode: ModeSegmentTests
+	manualEntry: ManualEntryTests
+	segmentNavigation: SegmentNavigationTests
+	events: () => void
+	all: () => void
+
+	constructor(utils: Utils) {
+		this.buttons = new ButtonTests(utils)
+		this.hours = new HourSegmentTests(utils)
+		this.minutes = new MinuteSegmentTests(utils)
+		this.mode = new ModeSegmentTests(utils)
+		this.manualEntry = new ManualEntryTests(utils)
+		this.segmentNavigation = new SegmentNavigationTests(utils)
+		this.events = () => eventTests(utils)
+
+		this.all = () => {
+			this.buttons.all()
+			this.hours.all()
+			this.minutes.all()
+			this.mode.all()
+			this.manualEntry.all()
+			this.segmentNavigation.all()
+			this.events()
 		}
 	}
 }
