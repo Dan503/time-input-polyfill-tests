@@ -140,4 +140,14 @@ export class Utils {
 
 		return targets[finishingSegment]()
 	}
+
+	clearAllSegments(segmentToEndOn: Segment) {
+		return this.cyInput().focus().type('{del}').should('have.value', '--:30 PM')
+			.then(() => this.use.rightArrow())
+			.then(() => this.cyInput().type('{del}').should('have.value', '--:-- PM'))
+			.then(() => this.use.rightArrow())
+			.then(() => this.cyInput().type('{del}').should('have.value', '--:-- --'))
+			.then(() => this.cyInput().blur())
+			.then(() => this.cySelectSegment(segmentToEndOn))
+	}
 }
