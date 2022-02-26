@@ -1,8 +1,6 @@
 import type { Segment } from "@time-input-polyfill/utils"
 import { toLeadingZero, a11yID } from "@time-input-polyfill/utils"
 
-export const demoSiteUrl = 'http://localhost:3000'
-
 type GetCyElem = () => Cypress.Chainable<JQuery<HTMLElement>>
 
 export class TestSuite {
@@ -76,6 +74,9 @@ export class Utils {
 			del: () => this.cyInput().trigger('keydown', { key: 'Delete' }).trigger('keyup', { key: 'Delete' }).wait(10),
 			backspace: () => this.cyInput().trigger('keydown', { key: 'Backspace' }).trigger('keyup', { key: 'Backspace' }).wait(10)
 		}
+
+		// https://stackoverflow.com/questions/4011793/this-is-undefined-in-javascript-class-methods
+		this.cySelectSegment = this.cySelectSegment.bind(this)
 	}
 
 	loadTestPage({ segment, polyfillId, url = this.localHostUrl, }: LoadTestPageParams = {}) {
