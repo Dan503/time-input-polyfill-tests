@@ -1,13 +1,16 @@
-import { Segment } from "@time-input-polyfill/utils"
-import { cyInput, cySelectSegment, hasReturnVal, loadTestPage, use } from "../../support"
-import { testId } from "../../../src/TestComponent"
+import type { Segment } from "@time-input-polyfill/utils"
+import type { Utils } from "../../support"
 
-const clickToggleButton = (segment: Segment) => () => cy.get(`#${testId}-toggle-polyfill`).click().wait(10).then(() => cySelectSegment(segment))
+export function toggleButton(utils: Utils) {
 
-/** Time inputs can't be automated other than through direct input like this :( */
-const setNonPolyTime = (newTime: string) => () => cyInput().type(newTime)
+	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
+	const { primaryTestsId } = IDs
 
-export function toggleButton() {
+	const clickToggleButton = (segment: Segment) => () => cy.get(`#${primaryTestsId}-toggle-polyfill`).click().wait(10).then(() => cySelectSegment(segment))
+
+	/** Time inputs can't be automated other than through direct input like this :( */
+	const setNonPolyTime = (newTime: string) => () => cyInput().type(newTime)
+
 	describe('Toggle polyfill button', () => {
 		testToggleWorks()
 		testToggleUp()
@@ -15,7 +18,7 @@ export function toggleButton() {
 
 		function testToggleWorks() {
 			it('can toggle on and off', () => {
-				loadTestPage()
+				loadPrimaryInput()
 					.should('have.value', '08:30 PM')
 					.then(hasReturnVal('20:30'))
 					.then(clickToggleButton('hrs12'))
@@ -34,7 +37,7 @@ export function toggleButton() {
 
 				function testHrs() {
 					it('hrs: up > toggle > up > toggle > up', () => {
-						loadTestPage({ segment: 'hrs12' })
+						loadPrimaryInput({ segment: 'hrs12' })
 							.then(use.upArrow)
 							.should('have.value', '09:30 PM')
 							.then(hasReturnVal('21:30'))
@@ -54,7 +57,7 @@ export function toggleButton() {
 
 				function testMinutes() {
 					it('minutes: up > toggle > up > toggle > up', () => {
-						loadTestPage({ segment: 'minutes' })
+						loadPrimaryInput({ segment: 'minutes' })
 							.then(use.upArrow)
 							.should('have.value', '08:31 PM')
 							.then(hasReturnVal('20:31'))
@@ -73,7 +76,7 @@ export function toggleButton() {
 
 				function testMode() {
 					it('mode: up > toggle > up > toggle > up', () => {
-						loadTestPage({ segment: 'mode' })
+						loadPrimaryInput({ segment: 'mode' })
 							.then(use.upArrow)
 							.should('have.value', '08:30 AM')
 							.then(hasReturnVal('08:30'))
@@ -100,7 +103,7 @@ export function toggleButton() {
 
 				function testHrs() {
 					it('hrs: down > toggle > down > toggle > down', () => {
-						loadTestPage({ segment: 'hrs12' })
+						loadPrimaryInput({ segment: 'hrs12' })
 							.then(use.downArrow)
 							.should('have.value', '07:30 PM')
 							.then(hasReturnVal('19:30'))
@@ -121,7 +124,7 @@ export function toggleButton() {
 
 				function testMinutes() {
 					it('minutes: down > toggle > down > toggle > down', () => {
-						loadTestPage({ segment: 'minutes' })
+						loadPrimaryInput({ segment: 'minutes' })
 							.then(use.downArrow)
 							.should('have.value', '08:29 PM')
 							.then(hasReturnVal('20:29'))
@@ -142,7 +145,7 @@ export function toggleButton() {
 
 				function testMode() {
 					it('mode: down > toggle > down > toggle > down', () => {
-						loadTestPage({ segment: 'mode' })
+						loadPrimaryInput({ segment: 'mode' })
 							.then(use.downArrow)
 							.should('have.value', '08:30 AM')
 							.then(hasReturnVal('08:30'))

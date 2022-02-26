@@ -1,12 +1,14 @@
-import { cyInput, cySelectSegment, hasReturnVal, loadTestPage, use } from "../../support"
-import { testId } from "../../../src/TestComponent"
+import type { Utils } from "../../support"
 
-const clickBtn1 = () => cy.get(`#${testId}-button-1`).click().wait(10).then(cyInput)
+export function button_1(utils: Utils) {
+	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
+	const { primaryTestsId } = IDs
 
-export function button_1() {
+	const clickBtn1 = () => cy.get(`#${primaryTestsId}-button-1`).click().wait(10).then(cyInput)
+
 	describe('Button 1 - "07:15 AM"', () => {
 		it('Arrow key functions', () => {
-			loadTestPage()
+			loadPrimaryInput()
 				.then(clickBtn1)
 				.should('have.value', '07:15 AM')
 				.then(hasReturnVal('07:15'))
@@ -40,7 +42,7 @@ export function button_1() {
 				)
 		})
 		it('Can press button twice', () => {
-			loadTestPage()
+			loadPrimaryInput()
 				.then(clickBtn1)
 				.should('have.value', '07:15 AM')
 				.then(hasReturnVal('07:15'))

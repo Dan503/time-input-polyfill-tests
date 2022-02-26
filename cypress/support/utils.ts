@@ -56,13 +56,13 @@ export class Utils {
 		}
 	}
 
-	loadPrimaryInput = (params: LoadTestPageParams) => loadTestPage({
+	loadPrimaryInput = (params?: LoadTestPageParams) => loadTestPage({
 		url: this.localHostUrl,
 		polyfillId: this.IDs.primaryTestsId,
 		...params
 	})
 
-	loadEventsInput = (params: LoadTestPageParams) => loadTestPage({
+	loadEventsInput = (params?: LoadTestPageParams) => loadTestPage({
 		url: this.localHostUrl,
 		polyfillId: this.IDs.eventTestsId,
 		...params
