@@ -1,7 +1,7 @@
 import { TestSuite, Utils } from '../../support/utils'
-import { button_1 } from './button-1'
-import { button_2 } from './button-2'
-import { button_3 } from './button-3'
+import { button_am } from './am-button'
+import { button_pm } from './pm-button'
+import { button_blank } from './blank-button'
 import { toggleButton } from './toggle-polyfill'
 
 export class ButtonTests extends TestSuite {
@@ -13,9 +13,9 @@ export class ButtonTests extends TestSuite {
 	constructor(utils: Utils) {
 		super(utils)
 
-		this.am = () => button_1(utils)
-		this.pm = () => button_2(utils)
-		this.blank = () => button_3(utils)
+		this.am = () => button_am(utils)
+		this.pm = () => button_pm(utils)
+		this.blank = () => button_blank(utils)
 		this.togglePolyfill = () => toggleButton(utils)
 	}
 }

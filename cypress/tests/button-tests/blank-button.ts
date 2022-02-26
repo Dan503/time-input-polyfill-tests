@@ -1,12 +1,12 @@
 import type { Utils } from "../../support"
 
-export function button_3(utils: Utils) {
+export function button_blank(utils: Utils) {
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
 	const { primaryTestsId } = IDs
 
 	const clickBtn3 = () => cy.get(`#${primaryTestsId}-button-3`).click().wait(10).then(cyInput)
 
-	describe('Button 3 - ""', () => {
+	describe('Button Blank - ""', () => {
 		it('arrow key functions', () => {
 			loadPrimaryInput()
 				.then(clickBtn3)
