@@ -3,7 +3,7 @@ import { decrementHours } from './decrement-hours'
 import { deleteHours } from './delete-hours'
 import { fromBlankHours } from './from-blank-hours'
 import { hrs24Values } from './24-hour-value-tests'
-import { TestSuite, Utils } from '../../support'
+import { TestSuite, Utils } from '../../support/utils'
 
 export class HourSegmentTests extends TestSuite {
 	incrementHours: () => void

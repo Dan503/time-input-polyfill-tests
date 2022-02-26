@@ -1,4 +1,4 @@
-import { TestSuite, Utils } from '../../support'
+import { TestSuite, Utils } from '../../support/utils'
 import { increments_0_1 } from './0-1_increments'
 import { increments_2_5 } from './2-5_increments'
 import { increments_6_9 } from './6-9_increments'

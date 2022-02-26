@@ -2,7 +2,7 @@ import { decrementMinutes } from './decrementMinutes'
 import { deleteMinutes } from './deleteMinutes'
 import { incrementMinutes } from './incrementMinutes'
 import { fromBlankMinutes } from './fromBlankMinutes'
-import { TestSuite, Utils } from '../../support'
+import { TestSuite, Utils } from '../../support/utils'
 
 export class MinuteSegmentTests extends TestSuite {
 	decrementMinutes: () => void

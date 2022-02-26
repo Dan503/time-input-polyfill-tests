@@ -1,4 +1,4 @@
-import { TestSuite, Utils } from '../../support'
+import { TestSuite, Utils } from '../../support/utils'
 import { button_1 } from './button-1'
 import { button_2 } from './button-2'
 import { button_3 } from './button-3'

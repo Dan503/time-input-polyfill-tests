@@ -1,4 +1,4 @@
-import { TestSuite, Utils } from '../../support'
+import { TestSuite, Utils } from '../../support/utils'
 import { viaArrowKeys } from './viaArrowKeys'
 import { viaJS } from './viaJS'
 // Via Tab Key doesn't work

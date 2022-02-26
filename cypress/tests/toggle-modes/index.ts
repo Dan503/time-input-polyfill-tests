@@ -1,7 +1,7 @@
 import { toggleModeUp } from './toggle-up'
 import { toggleModeDown } from './toggle-down'
 import { toggleModeFromBlank } from './toggle-from-blank'
-import { TestSuite, Utils } from '../../support'
+import { TestSuite, Utils } from '../../support/utils'
 
 export class ModeSegmentTests extends TestSuite {
 	toggleModeUp: () => void
