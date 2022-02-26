@@ -25,9 +25,6 @@ import { label, eventTestsLabel } from '../../src/TestComponent'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-export * from './utils'
-export * from './supportTypes'
-
 export const localHostUrl = 'http://localhost:3000'
 
 export const testSuite = new TimeInputTestSuite({
