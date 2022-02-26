@@ -1,4 +1,5 @@
-import { Utils, Labels, IDs } from './cypress/support/utils'
+import type { Labels, IDs } from './cypress/support/utils'
+import { Utils } from './cypress/support/utils'
 import { ButtonTests } from './cypress/tests/button-tests'
 
 export interface TimeInputTestSuiteParams {

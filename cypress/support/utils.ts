@@ -4,6 +4,21 @@ import { loadTestPage, LoadTestPageParams } from "./loadTestPage"
 
 type GetCyElem = () => Cypress.Chainable<JQuery<HTMLElement>>
 
+export class TestSuite {
+	all: () => void
+
+	constructor(utils: Utils) {
+		this.all = () => {
+			Object.keys(this).forEach(key => {
+				const fn = (this as any)[key]
+				if (typeof fn === 'function' && key !== 'all') {
+					fn(utils)
+				}
+			})
+		}
+	}
+}
+
 export type Labels = {
 	primaryTestsLabel: string
 	eventTestsLabel: string
