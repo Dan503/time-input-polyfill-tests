@@ -1,10 +1,11 @@
 import { getCursorSegment, Segment } from "@time-input-polyfill/utils"
-import { $input, a11yHasExpectedHtml, a11yInitialHtml, loadTestPage } from "../../support"
+import { Utils } from "../../support"
 
-export function viaJS() {
+export function viaJS(utils: Utils) {
+	const { $input, a11yHasExpectedHtml, a11yInitialHtml, loadPrimaryInput } = utils
 	describe('Via JS', () => {
 		it('Should send focus to hours segment', () => {
-			loadTestPage()
+			loadPrimaryInput()
 				.focus()
 				.wait(100)
 				.then((jQueryInputElem) => {

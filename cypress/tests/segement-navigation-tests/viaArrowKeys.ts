@@ -1,10 +1,11 @@
 import { getCursorSegment, Segment } from "@time-input-polyfill/utils"
-import { $input, a11yHasExpectedHtml, a11yInitialHtml, loadTestPage, use } from "../../support"
+import { Utils } from "../../support"
 
-export function viaArrowKeys() {
+export function viaArrowKeys(utils: Utils) {
+	const { $input, a11yHasExpectedHtml, a11yInitialHtml, loadPrimaryInput, use } = utils
 	describe('Via Arrow keys', () => {
 		it('hours [->] minutes', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.rightArrow)
 				.then((jQueryInputElem) => {
 					const segment = getCursorSegment($input(jQueryInputElem))
@@ -16,7 +17,7 @@ export function viaArrowKeys() {
 
 		})
 		it('minutes [->] mode', () => {
-			loadTestPage({ segment: 'minutes' })
+			loadPrimaryInput({ segment: 'minutes' })
 				.then(use.rightArrow)
 				.then((jQueryInputElem) => {
 					const segment = getCursorSegment($input(jQueryInputElem))
@@ -27,7 +28,7 @@ export function viaArrowKeys() {
 				.then(a11yHasExpectedHtml(a11yInitialHtml().mode))
 		})
 		it('mode [->] mode', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.rightArrow)
 				.then((jQueryInputElem) => {
 					const segment = getCursorSegment($input(jQueryInputElem))
@@ -38,7 +39,7 @@ export function viaArrowKeys() {
 				.then(a11yHasExpectedHtml(a11yInitialHtml().mode))
 		})
 		it('mode [<-] minutes', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.leftArrow)
 				.then((jQueryInputElem) => {
 					const segment = getCursorSegment($input(jQueryInputElem))
@@ -49,7 +50,7 @@ export function viaArrowKeys() {
 				.then(a11yHasExpectedHtml(a11yInitialHtml().minutes))
 		})
 		it('minutes [<-] hours', () => {
-			loadTestPage({ segment: 'minutes' })
+			loadPrimaryInput({ segment: 'minutes' })
 				.then(use.leftArrow)
 				.then((jQueryInputElem) => {
 					const segment = getCursorSegment($input(jQueryInputElem))
@@ -60,7 +61,7 @@ export function viaArrowKeys() {
 				.then(a11yHasExpectedHtml(a11yInitialHtml().hrs12))
 		})
 		it('hours [<-] hours', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.leftArrow)
 				.then((jQueryInputElem) => {
 					const segment = getCursorSegment($input(jQueryInputElem))

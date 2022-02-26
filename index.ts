@@ -4,6 +4,7 @@ import { ButtonTests } from './cypress/tests/button-tests'
 import { HourSegmentTests } from './cypress/tests/hour-segment-tests'
 import { ManualEntryTests } from './cypress/tests/manual-entry-tests'
 import { MinuteSegmentTests } from './cypress/tests/minute-segment-tests'
+import { SegmentNavigationTests } from './cypress/tests/segement-navigation-tests'
 
 export interface TimeInputTestSuiteParams {
 	primaryTestsLabel: string
@@ -16,6 +17,7 @@ interface Tests {
 	hours: HourSegmentTests
 	minutes: MinuteSegmentTests
 	manualEntry: ManualEntryTests
+	segmentNavigation: SegmentNavigationTests
 }
 
 export class TimeInputTestSuite {
@@ -33,6 +35,7 @@ export class TimeInputTestSuite {
 			hours: new HourSegmentTests(this.utils),
 			minutes: new MinuteSegmentTests(this.utils),
 			manualEntry: new ManualEntryTests(this.utils),
+			segmentNavigation: new SegmentNavigationTests(this.utils),
 		}
 	}
 }

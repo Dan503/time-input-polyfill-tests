@@ -1,14 +1,15 @@
 import { getCursorSegment, Segment } from "@time-input-polyfill/utils"
-import { loadTestPage, use, $input } from "../../support"
+import { Utils } from "../../support"
 
 // These tests don't work
 // Cypress Tab plugin doesn't support `event.preventDefault()` yet
 // https://github.com/Bkucera/cypress-plugin-tab/issues/52
 
-export function viaTabKey() {
+export function viaTabKey(utils: Utils) {
+	const { loadPrimaryInput, use, $input } = utils
 	describe('Via Tab key', () => {
 		it('hours [tab] minutes', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.tab)
 				.should('have.focus')
 				.then((jQueryInputElem) => {
@@ -19,7 +20,7 @@ export function viaTabKey() {
 				})
 		})
 		it('minutes [tab] mode', () => {
-			loadTestPage({ segment: 'minutes' })
+			loadPrimaryInput({ segment: 'minutes' })
 				.then(use.tab)
 				.should('have.focus')
 				.then((jQueryInputElem) => {
@@ -30,12 +31,12 @@ export function viaTabKey() {
 				})
 		})
 		it('mode [tab] off', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.tab)
 				.should('not.have.focus')
 		})
 		it('mode [shift + tab] minutes', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.shiftTab)
 				.should('have.focus')
 				.then((jQueryInputElem) => {
@@ -46,7 +47,7 @@ export function viaTabKey() {
 				})
 		})
 		it('minutes [shift + tab] hours', () => {
-			loadTestPage({ segment: 'minutes' })
+			loadPrimaryInput({ segment: 'minutes' })
 				.then(use.shiftTab)
 				.should('have.focus')
 				.then((jQueryInputElem) => {
@@ -57,7 +58,7 @@ export function viaTabKey() {
 				})
 		})
 		it('hours [shift + tab] off', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.shiftTab)
 				.should('not.have.focus')
 		})
