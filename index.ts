@@ -2,6 +2,7 @@ import type { Labels, IDs } from './cypress/support/utils'
 import { Utils } from './cypress/support/utils'
 import { ButtonTests } from './cypress/tests/button-tests'
 import { HourSegmentTests } from './cypress/tests/hour-segment-tests'
+import { ManualEntryTests } from './cypress/tests/manual-entry-tests'
 
 export interface TimeInputTestSuiteParams {
 	primaryTestsLabel: string
@@ -12,6 +13,7 @@ export interface TimeInputTestSuiteParams {
 interface Tests {
 	buttons: ButtonTests
 	hours: HourSegmentTests
+	manualEntry: ManualEntryTests
 }
 
 export class TimeInputTestSuite {
@@ -26,7 +28,8 @@ export class TimeInputTestSuite {
 		this.IDs = this.utils.IDs
 		this.tests = {
 			buttons: new ButtonTests(this.utils),
-			hours: new HourSegmentTests(this.utils)
+			hours: new HourSegmentTests(this.utils),
+			manualEntry: new ManualEntryTests(this.utils),
 		}
 	}
 }

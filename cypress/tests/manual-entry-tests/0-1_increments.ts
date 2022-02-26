@@ -1,9 +1,10 @@
-import { a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal, loadTestPage } from "../../support"
+import { Utils } from "../../support"
 
-export const increments_0_1 = () => {
+export const increments_0_1 = (utils: Utils) => {
+	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal } = utils
 	describe('increments 0-1', () => {
 		it('0 0 0 0 A', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.type('0')
 				.should('have.value', '12:30 PM')
 				.then(a11yHasExpectedHtml('<p>12.</p>'))
@@ -26,7 +27,7 @@ export const increments_0_1 = () => {
 				.then(hasReturnVal('00:00'))
 		})
 		it('1 1 1 1 A', () => {
-			loadTestPage({ segment: 'hrs12' })
+			loadPrimaryInput({ segment: 'hrs12' })
 				.type('1')
 				.should('have.value', '01:30 PM')
 				.then(a11yHasExpectedHtml('<p>1.</p>'))

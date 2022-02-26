@@ -1,12 +1,13 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal, loadTestPage } from "../../support"
+import { Utils } from "../../support"
 
-export const increments_6_9 = () => {
+export const increments_6_9 = (utils: Utils) => {
+	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal } = utils
 	describe('increments 6-9', () => {
 		for (let i = 6; i <= 9; i++) {
 			const hr24 = 12 + i
 			it(`${i} ${i} A`, () => {
-				loadTestPage({ segment: 'hrs12' })
+				loadPrimaryInput({ segment: 'hrs12' })
 					.type(`${i}`)
 					.should('have.value', `0${i}:30 PM`)
 					.then(a11yHasExpectedHtml(a11yInitialHtml().minutes))
