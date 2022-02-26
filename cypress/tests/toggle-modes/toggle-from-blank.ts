@@ -1,9 +1,10 @@
-import { a11yHasExpectedHtml, hasReturnVal, loadTestPage, use } from "../../support"
+import { Utils } from "../../support"
 
-export const toggleModeFromBlank = () => {
+export const toggleModeFromBlank = (utils: Utils) => {
+	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, use } = utils
 	describe('BLANK mode toggle', () => {
 		it('UP from blank mode', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.del)
 				.then(use.upArrow)
 				.should('have.value', '08:30 AM')
@@ -11,7 +12,7 @@ export const toggleModeFromBlank = () => {
 				.then(hasReturnVal('08:30'))
 		})
 		it('DOWN from blank mode', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.del)
 				.then(use.downArrow)
 				.should('have.value', '08:30 PM')

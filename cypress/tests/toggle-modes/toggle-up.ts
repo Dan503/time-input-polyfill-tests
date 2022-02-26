@@ -1,16 +1,17 @@
-import { a11yHasExpectedHtml, hasReturnVal, loadTestPage, use } from "../../support"
+import { Utils } from "../../support"
 
-export const toggleModeUp = () => {
+export const toggleModeUp = (utils: Utils) => {
+	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, use } = utils
 	describe('UP mode toggle', () => {
 		it('UP Updates mode correctly', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.upArrow)
 				.should('have.value', '08:30 AM')
 				.then(a11yHasExpectedHtml(`<p>AM.</p>`))
 				.then(hasReturnVal('08:30'))
 		})
 		it('UP UP Updates mode correctly', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.upArrow)
 				.then(use.upArrow)
 				.should('have.value', '08:30 PM')
@@ -18,7 +19,7 @@ export const toggleModeUp = () => {
 				.then(hasReturnVal('20:30'))
 		})
 		it('UP DOWN Updates mode correctly', () => {
-			loadTestPage({ segment: 'mode' })
+			loadPrimaryInput({ segment: 'mode' })
 				.then(use.upArrow)
 				.then(use.upArrow)
 				.should('have.value', '08:30 PM')
