@@ -6,19 +6,19 @@ import { hrs24Values } from './24-hour-value-tests'
 import { TestSuite, Utils } from '../../support/utils'
 
 export class HourSegmentTests extends TestSuite {
-	incrementHours: () => void
-	decrementHours: () => void
-	deleteHours: () => void
-	fromBlankHours: () => void
+	increment: () => void
+	decrement: () => void
+	delete: () => void
+	fromBlank: () => void
 	hrs24Values: () => void
 
 	constructor(utils: Utils) {
 		super(utils)
 
-		this.incrementHours = () => incrementHours(utils)
-		this.decrementHours = () => decrementHours(utils)
-		this.deleteHours = () => deleteHours(utils)
-		this.fromBlankHours = () => fromBlankHours(utils)
+		this.increment = () => incrementHours(utils)
+		this.decrement = () => decrementHours(utils)
+		this.delete = () => deleteHours(utils)
+		this.fromBlank = () => fromBlankHours(utils)
 		this.hrs24Values = () => hrs24Values(utils)
 	}
 }
