@@ -1,9 +1,10 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { a11yHasExpectedHtml, hasReturnVal, loadTestPage, setTime, use } from "../../support"
+import { Utils } from "../../support"
 
-export function incrementMinutes() {
+export function incrementMinutes(utils: Utils) {
+	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, setTime, use } = utils
 	it('Should increment as expected on up key press', () => {
-		loadTestPage({ segment: 'minutes' }).then(() => {
+		loadPrimaryInput({ segment: 'minutes' }).then(() => {
 			setTime('12:59 AM', 'minutes').then(() => {
 				let a = 0
 				while (a < 60) {

@@ -1,16 +1,17 @@
-import { a11yHasExpectedHtml, hasReturnVal, loadTestPage, use } from "../../support"
+import { Utils } from "../../support"
 
-export function deleteMinutes() {
+export function deleteMinutes(utils: Utils) {
+	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, use } = utils
 	describe('Delete minutes', () => {
 		it('Should clear minutes on delete key press', () => {
-			loadTestPage({ segment: 'minutes' })
+			loadPrimaryInput({ segment: 'minutes' })
 				.then(use.del)
 				.should('have.value', '08:-- PM')
 				.then(a11yHasExpectedHtml(`<p>blank.</p>`))
 				.then(hasReturnVal(''))
 		})
 		it('Should clear minutes on backspace key press', () => {
-			loadTestPage({ segment: 'minutes' })
+			loadPrimaryInput({ segment: 'minutes' })
 				.then(use.backspace)
 				.should('have.value', '08:-- PM')
 				.then(a11yHasExpectedHtml(`<p>blank.</p>`))

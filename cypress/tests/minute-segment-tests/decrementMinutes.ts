@@ -1,9 +1,10 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { a11yHasExpectedHtml, hasReturnVal, loadTestPage, setTime, use } from "../../support"
+import { Utils } from "../../support"
 
-export function decrementMinutes() {
+export function decrementMinutes(utils: Utils) {
+	const { loadPrimaryInput, a11yHasExpectedHtml, hasReturnVal, setTime, use } = utils
 	it('Should decrement as expected on down key press', () => {
-		loadTestPage({ segment: 'minutes' }).then(() => {
+		loadPrimaryInput({ segment: 'minutes' }).then(() => {
 			setTime('12:00 AM', 'minutes').then(() => {
 				let a = 59
 				while (a >= 0) {
