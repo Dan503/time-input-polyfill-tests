@@ -99,7 +99,7 @@ export class Utils {
 
 	cyInput = () => cy.get(`#${this.IDs.primaryTestsId}`)
 
-	cyA11y = () => cy.get(`#${a11yId}`)
+	cyA11y = () => cy.get(`#${this.IDs.a11yId}`)
 
 	$input(jQueryInput: JQuery<HTMLElement>) {
 		return jQueryInput[0] as HTMLInputElement
@@ -164,4 +164,11 @@ export class Utils {
 			.then(() => this.cyInput().blur())
 			.then(() => this.cySelectSegment(segmentToEndOn))
 	}
+}
+
+interface A11yInitialHtmlReturn {
+	hrs12: string
+	minutes: string
+	mode: string
+	focus: string
 }
