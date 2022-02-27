@@ -2,6 +2,8 @@
 	"name": "@time-input-polyfill/tests",
 	"version": "0.1.0",
 	"private": false,
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"dependencies": {
 		"@time-input-polyfill/react": "^2.0.1",
 		"@time-input-polyfill/utils": "^1.0.4"
@@ -32,7 +34,9 @@
 		"build": "react-scripts build",
 		"test": "cypress open",
 		"lint": "eslint \"src/**\"",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"prepublishOnly": "tsc",
+		"postpublish": "rm -rf dist"
 	},
 	"browserslist": {
 		"production": [
