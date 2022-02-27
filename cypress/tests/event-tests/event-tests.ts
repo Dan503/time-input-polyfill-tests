@@ -1,5 +1,5 @@
-import { EventAltName, EventMainName } from "../../src/core/supportTypes"
-import { Utils } from "../support/utils"
+import { EventAltName, EventMainName } from "../../../src/core/supportTypes"
+import { Utils } from "../../support/utils"
 
 export function eventTests(utils: Utils) {
 	const { loadEventsInput, IDs } = utils

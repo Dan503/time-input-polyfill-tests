@@ -6,7 +6,7 @@ import { ManualEntryTests } from './cypress/tests/manual-entry-tests'
 import { MinuteSegmentTests } from './cypress/tests/minute-segment-tests'
 import { SegmentNavigationTests } from './cypress/tests/segement-navigation-tests'
 import { ModeSegmentTests } from './cypress/tests/toggle-modes'
-import { eventTests } from './cypress/tests/event-tests'
+import { EventTests } from './cypress/tests/event-tests'
 import { MiscellaneousTests } from './cypress/tests/miscellaneous-tests'
 import { getIDsAndLabels } from './src/core/IDs-and-labels'
 
@@ -54,7 +54,7 @@ class Tests {
 	manualEntry: ManualEntryTests
 	segmentNavigation: SegmentNavigationTests
 	miscellaneous: MiscellaneousTests
-	events: () => void
+	events: EventTests
 	all: () => void
 
 	constructor(utils: Utils) {
@@ -65,7 +65,7 @@ class Tests {
 		this.manualEntry = new ManualEntryTests(utils)
 		this.segmentNavigation = new SegmentNavigationTests(utils)
 		this.miscellaneous = new MiscellaneousTests(utils)
-		this.events = () => eventTests(utils)
+		this.events = new EventTests(utils)
 
 		this.all = () => {
 			this.buttons.all()
@@ -75,7 +75,7 @@ class Tests {
 			this.manualEntry.all()
 			this.segmentNavigation.all()
 			this.miscellaneous.all()
-			this.events()
+			this.events.all()
 		}
 	}
 }
