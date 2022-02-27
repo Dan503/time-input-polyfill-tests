@@ -1,9 +1,9 @@
 import { getCursorSegment, Segment } from "@time-input-polyfill/utils"
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
 export function viaArrowKeys(utils: Utils) {
 	const { $input, a11yHasExpectedHtml, a11yInitialHtml, loadPrimaryInput, use } = utils
-	describe('Via Arrow keys', () => {
+	describe('Segment Navigation - via Arrow keys', () => {
 		it('hours [->] minutes', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.rightArrow)

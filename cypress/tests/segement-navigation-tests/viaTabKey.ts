@@ -1,5 +1,5 @@
 import { getCursorSegment, Segment } from "@time-input-polyfill/utils"
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
 // These tests don't work
 // Cypress Tab plugin doesn't support `event.preventDefault()` yet
