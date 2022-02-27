@@ -1,16 +1,18 @@
 import type { Utils } from "../../support/utils"
+import { staticValues } from "../../../src/core/static-values"
 
 export function button_blank(utils: Utils) {
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
+	const { cpuValue, inputValue, labelValue } = staticValues.buttonBlank
 
 	const clickBtn3 = () => cy.get(`#${IDs.buttonIDs.blankID}`).click().wait(10).then(cyInput)
 
-	describe('Button Blank - ""', () => {
+	describe(`Button Blank - ${labelValue}`, () => {
 		it('arrow key functions', () => {
 			loadPrimaryInput()
 				.then(clickBtn3)
-				.should('have.value', '--:-- --')
-				.then(hasReturnVal(''))
+				.should('have.value', inputValue)
+				.then(hasReturnVal(cpuValue))
 				.then(() =>
 					cySelectSegment('hrs12')
 						.then(use.upArrow)

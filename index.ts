@@ -10,6 +10,8 @@ import { eventTests } from './cypress/tests/event-tests'
 import { MiscellaneousTests } from './cypress/tests/miscellaneous-tests'
 import { getIDsAndLabels } from './src/core/IDs-and-labels'
 
+export { staticValues } from './src/core/static-values'
+
 export { getIDsAndLabels }
 
 export interface TimeInputTestSuiteParams {

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import TimeInputPolyfill from '@time-input-polyfill/react'
 import type { AltEventName, EventName } from '../cypress/support/supportTypes'
 import { getIDsAndLabels } from './core/IDs-and-labels'
+import { staticValues } from './core/static-values'
 
 const { labels, IDs } = getIDsAndLabels()
 const { primaryTestsLabel, eventTestsLabel } = labels
@@ -19,7 +20,7 @@ const {
 export function TestComponent() {
 	const [value, setValue] = useState<string | undefined>('20:30')
 	const [eventsTestValue, setEventsTestValue] = useState<string | undefined>(
-		'20:30',
+		staticValues.defaultValue.cpuValue,
 	)
 	const [forcePolyfill, setForcePolyfill] = useState(true)
 	const [testValue, setTestValue] = useState('default')
@@ -56,14 +57,26 @@ export function TestComponent() {
 					alignItems: 'center',
 				}}
 			>
-				<button onClick={() => setValue('07:15')} id={buttonIDs.amID}>
-					Set {primaryTestsLabel.toLocaleLowerCase()} time to 7:15 AM
+				<button
+					onClick={() => setValue(staticValues.buttonAM.cpuValue)}
+					id={buttonIDs.amID}
+				>
+					Set {primaryTestsLabel.toLocaleLowerCase()} time to{' '}
+					{staticValues.buttonAM.labelValue}
 				</button>
-				<button onClick={() => setValue('15:45')} id={buttonIDs.pmID}>
-					Set {primaryTestsLabel.toLocaleLowerCase()} time to 3:45 PM
+				<button
+					onClick={() => setValue(staticValues.buttonPM.cpuValue)}
+					id={buttonIDs.pmID}
+				>
+					Set {primaryTestsLabel.toLocaleLowerCase()} time to{' '}
+					{staticValues.buttonPM.labelValue}
 				</button>
-				<button onClick={() => setValue('')} id={buttonIDs.blankID}>
-					Set {primaryTestsLabel.toLocaleLowerCase()} time to " "
+				<button
+					onClick={() => setValue(staticValues.buttonBlank.cpuValue)}
+					id={buttonIDs.blankID}
+				>
+					Set {primaryTestsLabel.toLocaleLowerCase()} time to{' '}
+					{staticValues.buttonBlank.labelValue}
 				</button>
 			</p>
 

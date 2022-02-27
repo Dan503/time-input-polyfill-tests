@@ -1,9 +1,11 @@
 import type { Segment } from "@time-input-polyfill/utils"
 import type { Utils } from "../../support/utils"
+import { staticValues } from "../../../src/core/static-values"
 
 export function toggleButton(utils: Utils) {
 
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
+	const { cpuValue, inputValue } = staticValues.defaultValue
 
 	const clickToggleButton = (segment: Segment) => () => cy.get(`#${IDs.buttonIDs.togglePolyfillID}`).click().wait(10).then(() => cySelectSegment(segment))
 
@@ -18,8 +20,8 @@ export function toggleButton(utils: Utils) {
 		function testToggleWorks() {
 			it('can toggle on and off', () => {
 				loadPrimaryInput()
-					.should('have.value', '08:30 PM')
-					.then(hasReturnVal('20:30'))
+					.should('have.value', inputValue)
+					.then(hasReturnVal(cpuValue))
 					.then(clickToggleButton('hrs12'))
 					.should('have.value', '20:30')
 					.then(hasReturnVal('20:30'))

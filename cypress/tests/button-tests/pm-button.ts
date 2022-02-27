@@ -1,16 +1,18 @@
+import { staticValues } from "../../../src/core/static-values"
 import type { Utils } from "../../support/utils"
 
 export function button_pm(utils: Utils) {
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
+	const { cpuValue, inputValue, labelValue } = staticValues.buttonPM
 
 	const clickBtn2 = () => cy.get(`#${IDs.buttonIDs.pmID}`).click().wait(10).then(cyInput)
 
-	describe('Button PM - "03:45 PM"', () => {
+	describe(`Button PM - ${labelValue}`, () => {
 		it('Arrow key functions', () => {
 			loadPrimaryInput()
 				.then(clickBtn2)
-				.should('have.value', '03:45 PM')
-				.then(hasReturnVal('15:45'))
+				.should('have.value', inputValue)
+				.then(hasReturnVal(cpuValue))
 				.then(() =>
 					cySelectSegment('hrs12')
 						.then(use.upArrow)
