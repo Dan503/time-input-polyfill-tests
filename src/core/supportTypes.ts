@@ -1,5 +1,5 @@
 
-export type EventName =
+export type EventMainName =
 	| 'focus'
 	| 'blur'
 	| 'mouseDown'
@@ -8,7 +8,7 @@ export type EventName =
 	| 'keyUp'
 	| 'none'
 
-export type AltEventName =
+export type EventAltName =
 	| 'change'
 	| 'click'
 	| 'none'

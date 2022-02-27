@@ -1,4 +1,4 @@
-import { AltEventName, EventName } from "../support/supportTypes"
+import { EventAltName, EventMainName } from "../../src/core/supportTypes"
 import { Utils } from "../support/utils"
 
 export function eventTests(utils: Utils) {
@@ -11,8 +11,8 @@ export function eventTests(utils: Utils) {
 	const altEventName = () => cy.get(`#${IDs.eventsAltNameID}`)
 
 	const hasValue = (value: string) => () => eventValue().should('have.text', value).then(eventTestsInput)
-	const hasName = (name: EventName) => () => mainEventName().should('have.text', name).then(eventTestsInput)
-	const hasAltName = (name: AltEventName) => () => altEventName().should('have.text', name).then(eventTestsInput)
+	const hasName = (name: EventMainName) => () => mainEventName().should('have.text', name).then(eventTestsInput)
+	const hasAltName = (name: EventAltName) => () => altEventName().should('have.text', name).then(eventTestsInput)
 
 	const keyDown = () => eventTestsInput().trigger('keydown', { key: 'ArrowUp' })
 	const keyUp = () => eventTestsInput().trigger('keyup', { key: 'ArrowUp' })

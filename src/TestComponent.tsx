@@ -1,10 +1,15 @@
 import { useState } from 'react'
-// import TimeInputPolyfill from 'react-time-input-polyfill'
 import TimeInputPolyfill from '@time-input-polyfill/react'
-import type { AltEventName, EventName } from '../cypress/support/supportTypes'
-import { getIDsAndLabels } from './core/IDs-and-labels'
-import { staticValues } from './core/static-values'
 
+import {
+	EventAltName,
+	EventMainName,
+	getIDsAndLabels,
+	staticValues,
+	// Replace './core/index' with '@time-input-polyfill/tests' in real projects
+} from './core/index'
+
+// Note: You can pass custom labels into `getIDsAndLabels` to generate correct IDs based on the labels you pass in
 const { labels, IDs } = getIDsAndLabels()
 const { primaryTestsLabel, eventTestsLabel } = labels
 const {
@@ -18,14 +23,16 @@ const {
 } = IDs
 
 export function TestComponent() {
-	const [value, setValue] = useState<string | undefined>('20:30')
+	const [value, setValue] = useState<string | undefined>(
+		staticValues.defaultValue.cpuValue,
+	)
 	const [eventsTestValue, setEventsTestValue] = useState<string | undefined>(
 		staticValues.defaultValue.cpuValue,
 	)
 	const [forcePolyfill, setForcePolyfill] = useState(true)
 	const [testValue, setTestValue] = useState('default')
-	const [eventName, setEventName] = useState<EventName>('none')
-	const [altEventName, setAltEventName] = useState<AltEventName>('none')
+	const [eventName, setEventName] = useState<EventMainName>('none')
+	const [altEventName, setAltEventName] = useState<EventAltName>('none')
 
 	return (
 		<div className="TestComponent">
