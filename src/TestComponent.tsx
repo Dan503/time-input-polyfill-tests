@@ -30,7 +30,9 @@ export function TestComponent() {
 		staticValues.defaultValue.cpuValue,
 	)
 	const [forcePolyfill, setForcePolyfill] = useState(true)
-	const [testValue, setTestValue] = useState('default')
+	const [eventInputValue, setEventInputValue] = useState(
+		staticValues.defaultValue.inputValue,
+	)
 	const [eventName, setEventName] = useState<EventMainName>('none')
 	const [altEventName, setAltEventName] = useState<EventAltName>('none')
 
@@ -102,39 +104,39 @@ export function TestComponent() {
 					setValue={setEventsTestValue}
 					forcePolyfill
 					onChange={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setAltEventName('change')
 					}}
 					onFocus={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setEventName('focus')
 					}}
 					onBlur={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setEventName('blur')
 					}}
 					onMouseDown={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setEventName('mouseDown')
 					}}
 					onMouseUp={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setEventName('mouseUp')
 					}}
 					onClick={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setAltEventName('click')
 					}}
 					onKeyDown={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setEventName('keyDown')
 					}}
 					onKeyUp={(e) => {
-						setTestValue(e.currentTarget.value)
+						setEventInputValue(e.currentTarget.value)
 						setEventName('keyUp')
 					}}
 				/>
-				<p id={eventsValueID}>{testValue}</p>
+				<p id={eventsValueID}>{eventInputValue}</p>
 				<p id={eventsMainNameID}>{eventName}</p>
 				<p id={eventsAltNameID}>{altEventName}</p>
 			</div>

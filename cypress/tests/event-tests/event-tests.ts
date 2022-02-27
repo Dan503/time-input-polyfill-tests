@@ -1,3 +1,4 @@
+import { staticValues } from "../../.."
 import { EventAltName, EventMainName } from "../../../src/core/supportTypes"
 import { Utils } from "../../support/utils"
 
@@ -23,7 +24,7 @@ export function eventTests(utils: Utils) {
 	describe('Events', () => {
 		it('ensures events work', () => {
 			loadEventsInput()
-				.then(hasValue('default'))
+				.then(hasValue(staticValues.defaultValue.inputValue))
 				.then(hasName('none'))
 				.then(hasAltName('none'))
 				.focus()
