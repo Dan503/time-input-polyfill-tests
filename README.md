@@ -41,7 +41,11 @@ Finally, you will need to create a test component. Model this test component aft
 
 https://github.com/Dan503/time-input-polyfill-tests/blob/master/src/TestComponent.tsx
 
-Now run `npx cypress open` to run the tests against your component.
+## Running the project
+
+Using a split terminal, have one terminal run `npm run start` (this runs the site) and the other run `npm run test` (this runs the Cypress UI).
+
+Use the Cypress UI to determine what tests to run.
 
 ## IMPORTANT: Tab key testing cannot be automated
 
