@@ -5,17 +5,17 @@ import { fromBlankMinutes } from './fromBlankMinutes'
 import { TestSuite, Utils } from '../../support/utils'
 
 export class MinuteSegmentTests extends TestSuite {
-	decrementMinutes: () => void
-	deleteMinutes: () => void
-	incrementMinutes: () => void
-	fromBlankMinutes: () => void
+	increment: () => void
+	decrement: () => void
+	delete: () => void
+	fromBlank: () => void
 
 	constructor(utils: Utils) {
 		super(utils)
 
-		this.decrementMinutes = () => decrementMinutes(utils)
-		this.deleteMinutes = () => deleteMinutes(utils)
-		this.incrementMinutes = () => incrementMinutes(utils)
-		this.fromBlankMinutes = () => fromBlankMinutes(utils)
+		this.increment = () => incrementMinutes(utils)
+		this.decrement = () => decrementMinutes(utils)
+		this.delete = () => deleteMinutes(utils)
+		this.fromBlank = () => fromBlankMinutes(utils)
 	}
 }
