@@ -1,7 +1,7 @@
 import { useState } from 'react'
 // import TimeInputPolyfill from 'react-time-input-polyfill'
 import TimeInputPolyfill from '@time-input-polyfill/react'
-import { AltEventName, EventName } from '../cypress/support'
+import type { AltEventName, EventName } from '../cypress/support/supportTypes'
 
 export const label = 'Primary tests'
 export const testId = label.toLowerCase().replaceAll(' ', '-')

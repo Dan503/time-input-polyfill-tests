@@ -1,8 +1,8 @@
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
-export const otherManualEntryTests = (utils: Utils) => {
+export const manualEntry_other = (utils: Utils) => {
 	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal, use } = utils
-	describe('other manual entry tests', () => {
+	describe('Manual entry - other', () => {
 		it('08:30 PM >> [ 1 > < 2 ] >> 02:30 PM', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
 				.type('1')

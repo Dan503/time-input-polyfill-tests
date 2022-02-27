@@ -1,9 +1,9 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
-export const increments_6_9 = (utils: Utils) => {
+export const manualEntry_6_9 = (utils: Utils) => {
 	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal } = utils
-	describe('increments 6-9', () => {
+	describe('Manual entry - 6-9', () => {
 		for (let i = 6; i <= 9; i++) {
 			const hr24 = 12 + i
 			it(`${i} ${i} A`, () => {

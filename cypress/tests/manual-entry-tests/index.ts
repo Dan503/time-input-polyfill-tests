@@ -1,21 +1,24 @@
 import { TestSuite, Utils } from '../../support/utils'
-import { increments_0_1 } from './0-1_increments'
-import { increments_2_5 } from './2-5_increments'
-import { increments_6_9 } from './6-9_increments'
-import { otherManualEntryTests } from './other-manual-entry-tests'
+import { manualEntry_0 } from './0_manual-entry'
+import { manualEntry_1 } from './1_manual-entry'
+import { manualEntry_2_5 } from './2-5_manual-entry'
+import { manualEntry_6_9 } from './6-9_increments'
+import { manualEntry_other } from './other-manual-entry-tests'
 
 export class ManualEntryTests extends TestSuite {
-	increments_0_1: () => void
-	increments_2_5: () => void
-	increments_6_9: () => void
-	otherManualEntryTests: () => void
+	_0: () => void
+	_1: () => void
+	_2_5: () => void
+	_6_9: () => void
+	other: () => void
 
 	constructor(utils: Utils) {
 		super(utils)
 
-		this.increments_0_1 = () => increments_0_1(utils)
-		this.increments_2_5 = () => increments_2_5(utils)
-		this.increments_6_9 = () => increments_6_9(utils)
-		this.otherManualEntryTests = () => otherManualEntryTests(utils)
+		this._0 = () => manualEntry_0(utils)
+		this._1 = () => manualEntry_1(utils)
+		this._2_5 = () => manualEntry_2_5(utils)
+		this._6_9 = () => manualEntry_6_9(utils)
+		this.other = () => manualEntry_other(utils)
 	}
 }
