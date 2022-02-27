@@ -6,7 +6,8 @@
 	"types": "./dist/index.d.ts",
 	"dependencies": {
 		"@time-input-polyfill/react": "^2.0.1",
-		"@time-input-polyfill/utils": "^1.0.4"
+		"@time-input-polyfill/utils": "^1.0.4",
+		"cypress-plugin-tab": "^1.0.5"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.16.1",
@@ -20,14 +21,15 @@
 		"@typescript-eslint/eslint-plugin": "^4.33.0",
 		"@typescript-eslint/parser": "^4.33.0",
 		"chai": "^4.3.6",
-		"cypress": "^9.5.0",
-		"cypress-plugin-tab": "^1.0.5",
 		"eslint": "^7.32.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-scripts": "^4.0.3",
 		"typescript": "^4.5.4",
 		"web-vitals": "^2.1.2"
+	},
+	"peerDependencies": {
+		"cypress": "*"
 	},
 	"scripts": {
 		"start": "react-scripts start",
