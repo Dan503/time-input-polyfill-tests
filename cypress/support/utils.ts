@@ -145,9 +145,7 @@ export class Utils {
 	}
 
 	a11yHasExpectedHtml(expectedHtml: string) {
-		return () => {
-			this.cyA11y().wait(10).should('have.html', expectedHtml).then(this.cyInput)
-		}
+		return () => this.cyA11y().wait(10).should('have.html', expectedHtml).then(this.cyInput)
 	}
 
 	sendFocus = () => this.cyInput().focus().wait(100)
