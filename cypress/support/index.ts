@@ -19,16 +19,5 @@ import 'cypress-plugin-tab'
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-import { TimeInputTestSuite } from '../../index'
-import { label, eventTestsLabel } from '../../src/TestComponent'
-
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
-export const localHostUrl = 'http://localhost:3000'
-
-export const testSuite = new TimeInputTestSuite({
-	localHostUrl,
-	primaryTestsLabel: label,
-	eventTestsLabel,
-})

@@ -4,9 +4,8 @@ import type { Utils } from "../../support/utils"
 export function toggleButton(utils: Utils) {
 
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
-	const { primaryTestsId } = IDs
 
-	const clickToggleButton = (segment: Segment) => () => cy.get(`#${primaryTestsId}-toggle-polyfill`).click().wait(10).then(() => cySelectSegment(segment))
+	const clickToggleButton = (segment: Segment) => () => cy.get(`#${IDs.buttonIDs.togglePolyfillID}`).click().wait(10).then(() => cySelectSegment(segment))
 
 	/** Time inputs can't be automated other than through direct input like this :( */
 	const setNonPolyTime = (newTime: string) => () => cyInput().type(newTime)

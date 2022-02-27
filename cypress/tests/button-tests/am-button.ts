@@ -2,9 +2,8 @@ import type { Utils } from "../../support/utils"
 
 export function button_am(utils: Utils) {
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
-	const { primaryTestsId } = IDs
 
-	const clickBtn1 = () => cy.get(`#${primaryTestsId}-button-1`).click().wait(10).then(cyInput)
+	const clickBtn1 = () => cy.get(`#${IDs.buttonIDs.amID}`).click().wait(10).then(cyInput)
 
 	describe('Button AM - "07:15 AM"', () => {
 		it('Arrow key functions', () => {

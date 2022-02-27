@@ -2,9 +2,8 @@ import type { Utils } from "../../support/utils"
 
 export function button_blank(utils: Utils) {
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils
-	const { primaryTestsId } = IDs
 
-	const clickBtn3 = () => cy.get(`#${primaryTestsId}-button-3`).click().wait(10).then(cyInput)
+	const clickBtn3 = () => cy.get(`#${IDs.buttonIDs.blankID}`).click().wait(10).then(cyInput)
 
 	describe('Button Blank - ""', () => {
 		it('arrow key functions', () => {

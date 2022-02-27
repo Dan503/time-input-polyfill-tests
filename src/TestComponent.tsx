@@ -2,12 +2,19 @@ import { useState } from 'react'
 // import TimeInputPolyfill from 'react-time-input-polyfill'
 import TimeInputPolyfill from '@time-input-polyfill/react'
 import type { AltEventName, EventName } from '../cypress/support/supportTypes'
+import { testSuite } from './AppTestSuite'
 
-export const label = 'Primary tests'
-export const testId = label.toLowerCase().replaceAll(' ', '-')
-
-export const eventTestsLabel = 'Event tests'
-export const eventTestsId = eventTestsLabel.toLowerCase().replaceAll(' ', '-')
+const { labels, IDs } = testSuite
+const { primaryTestsLabel, eventTestsLabel } = labels
+const {
+	primaryInputID,
+	primaryValueID,
+	buttonIDs,
+	eventsInputID,
+	eventsValueID,
+	eventsMainNameID,
+	eventsAltNameID,
+} = IDs
 
 export function TestComponent() {
 	const [value, setValue] = useState<string | undefined>('20:30')
@@ -23,10 +30,10 @@ export function TestComponent() {
 		<div className="TestComponent">
 			<h2>Primary tests</h2>
 			<div>
-				<label htmlFor={testId}>{label}</label>
+				<label htmlFor={primaryInputID}>{primaryTestsLabel}</label>
 				<br />
 				<TimeInputPolyfill
-					id={testId}
+					id={primaryInputID}
 					value={value}
 					setValue={setValue}
 					forcePolyfill={forcePolyfill}
@@ -34,7 +41,7 @@ export function TestComponent() {
 				<button
 					onClick={() => setForcePolyfill(!forcePolyfill)}
 					style={{ marginLeft: 10 }}
-					id={testId + '-toggle-polyfill'}
+					id={buttonIDs.togglePolyfillID}
 					title="Toggle polyfill"
 				>
 					Polyfill is <strong>{forcePolyfill ? 'ON' : 'OFF'}</strong>
@@ -49,35 +56,28 @@ export function TestComponent() {
 					alignItems: 'center',
 				}}
 			>
-				<button
-					onClick={() => setValue('07:15')}
-					id={testId + '-button-1'}
-				>
-					Set {label.toLocaleLowerCase()} time to 7:15 AM
+				<button onClick={() => setValue('07:15')} id={buttonIDs.amID}>
+					Set {primaryTestsLabel.toLocaleLowerCase()} time to 7:15 AM
 				</button>
-				<button
-					onClick={() => setValue('15:45')}
-					id={testId + '-button-2'}
-				>
-					Set {label.toLocaleLowerCase()} time to 3:45 PM
+				<button onClick={() => setValue('15:45')} id={buttonIDs.pmID}>
+					Set {primaryTestsLabel.toLocaleLowerCase()} time to 3:45 PM
 				</button>
-				<button onClick={() => setValue('')} id={testId + '-button-3'}>
-					Set {label.toLocaleLowerCase()} time to " "
+				<button onClick={() => setValue('')} id={buttonIDs.blankID}>
+					Set {primaryTestsLabel.toLocaleLowerCase()} time to " "
 				</button>
 			</p>
 
 			<p>
-				Returned value: "
-				<span id={testId + '-return-value'}>{value}</span>"
+				Returned value: "<span id={primaryValueID}>{value}</span>"
 			</p>
 
 			<h2>Event tests</h2>
 
 			<div>
-				<label htmlFor={eventTestsId}>{eventTestsLabel}</label>
+				<label htmlFor={eventsInputID}>{eventTestsLabel}</label>
 				<br />
 				<TimeInputPolyfill
-					id={eventTestsId}
+					id={eventsInputID}
 					value={eventsTestValue}
 					setValue={setEventsTestValue}
 					forcePolyfill
@@ -114,9 +114,9 @@ export function TestComponent() {
 						setEventName('keyUp')
 					}}
 				/>
-				<p id={`${eventTestsId}-value`}>{testValue}</p>
-				<p id={`${eventTestsId}-eventName`}>{eventName}</p>
-				<p id={`${eventTestsId}-altEventName`}>{altEventName}</p>
+				<p id={eventsValueID}>{testValue}</p>
+				<p id={eventsMainNameID}>{eventName}</p>
+				<p id={eventsAltNameID}>{altEventName}</p>
 			</div>
 		</div>
 	)

@@ -23,9 +23,19 @@ export type Labels = {
 	eventTestsLabel: string
 }
 export type IDs = {
-	primaryTestsId: string
-	eventTestsId: string
-	a11yId: string
+	primaryInputID: string,
+	primaryValueID: string,
+	buttonIDs: {
+		togglePolyfillID: string,
+		amID: string,
+		pmID: string,
+		blankID: string,
+	},
+	eventsInputID: string,
+	eventsValueID: string,
+	eventsMainNameID: string,
+	eventsAltNameID: string,
+	a11yID: string
 }
 
 export interface UtilParams {
@@ -58,10 +68,22 @@ export class Utils {
 	constructor({ primaryTestsLabel, eventTestsLabel, localHostUrl }: UtilParams) {
 		this.localHostUrl = localHostUrl
 		this.labels = { primaryTestsLabel, eventTestsLabel }
+		const primaryInputID = primaryTestsLabel.toLowerCase().replaceAll(' ', '-')
+		const eventsInputID = eventTestsLabel.toLowerCase().replaceAll(' ', '-')
 		this.IDs = {
-			primaryTestsId: primaryTestsLabel.toLowerCase().replaceAll(' ', '-'),
-			eventTestsId: eventTestsLabel.toLowerCase().replaceAll(' ', '-'),
-			a11yId: a11yID,
+			primaryInputID,
+			primaryValueID: `${primaryInputID}-primary-value`,
+			buttonIDs: {
+				amID: `${primaryInputID}-am-button`,
+				pmID: `${primaryInputID}-pm-button`,
+				blankID: `${primaryInputID}-blank-button`,
+				togglePolyfillID: `${primaryInputID}-toggle-polyfill-button`,
+			},
+			eventsInputID,
+			eventsValueID: `${eventsInputID}-event-value`,
+			eventsMainNameID: `${eventsInputID}-main-event-name`,
+			eventsAltNameID: `${eventsInputID}-alt-event-name`,
+			a11yID,
 		}
 		this.use = {
 			upArrow: () => this.cyInput().trigger('keydown', { key: 'ArrowUp' }).trigger('keyup', { key: 'ArrowUp' }).wait(10),
@@ -103,25 +125,25 @@ export class Utils {
 	}
 
 	loadPrimaryInput = (params?: LoadTestPageParams) => this.loadTestPage({
-		polyfillId: this.IDs.primaryTestsId,
+		polyfillId: this.IDs.primaryInputID,
 		...params
 	})
 
 	loadEventsInput = (params?: LoadTestPageParams) => this.loadTestPage({
-		polyfillId: this.IDs.eventTestsId,
+		polyfillId: this.IDs.eventsInputID,
 		...params
 	})
 
-	cyInput = () => cy.get(`#${this.IDs.primaryTestsId}`)
+	cyInput = () => cy.get(`#${this.IDs.primaryInputID}`)
 
-	cyA11y = () => cy.get(`#${this.IDs.a11yId}`)
+	cyA11y = () => cy.get(`#${this.IDs.a11yID}`)
 
 	$input(jQueryInput: JQuery<HTMLElement>) {
 		return jQueryInput[0] as HTMLInputElement
 	}
 
 	hasReturnVal = (expectation: string) => () => {
-		return cy.get(`#${this.IDs.primaryTestsId}-return-value`)
+		return cy.get(`#${this.IDs.primaryValueID}`)
 			.wait(10)
 			.should('have.text', expectation)
 			.then(this.cyInput)

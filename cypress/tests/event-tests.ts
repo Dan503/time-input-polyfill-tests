@@ -4,15 +4,15 @@ import { Utils } from "../support/utils"
 export function eventTests(utils: Utils) {
 	const { loadEventsInput, IDs } = utils
 
-	const eventTestsInput = () => cy.get(`#${IDs.eventTestsId}`)
+	const eventTestsInput = () => cy.get(`#${IDs.eventsInputID}`)
 
-	const eventValue = () => cy.get(`#${IDs.eventTestsId}-value`)
-	const eventName = () => cy.get(`#${IDs.eventTestsId}-eventName`)
-	const eventAltName = () => cy.get(`#${IDs.eventTestsId}-altEventName`)
+	const eventValue = () => cy.get(`#${IDs.eventsValueID}`)
+	const mainEventName = () => cy.get(`#${IDs.eventsMainNameID}`)
+	const altEventName = () => cy.get(`#${IDs.eventsAltNameID}`)
 
 	const hasValue = (value: string) => () => eventValue().should('have.text', value).then(eventTestsInput)
-	const hasName = (name: EventName) => () => eventName().should('have.text', name).then(eventTestsInput)
-	const hasAltName = (name: AltEventName) => () => eventAltName().should('have.text', name).then(eventTestsInput)
+	const hasName = (name: EventName) => () => mainEventName().should('have.text', name).then(eventTestsInput)
+	const hasAltName = (name: AltEventName) => () => altEventName().should('have.text', name).then(eventTestsInput)
 
 	const keyDown = () => eventTestsInput().trigger('keydown', { key: 'ArrowUp' })
 	const keyUp = () => eventTestsInput().trigger('keyup', { key: 'ArrowUp' })
@@ -22,7 +22,7 @@ export function eventTests(utils: Utils) {
 
 	describe('Events', () => {
 		it('ensures events work', () => {
-			loadEventsInput({ polyfillId: IDs.eventTestsId })
+			loadEventsInput()
 				.then(hasValue('default'))
 				.then(hasName('none'))
 				.then(hasAltName('none'))
