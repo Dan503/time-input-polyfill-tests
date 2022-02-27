@@ -37,7 +37,7 @@
 		"test": "cypress open",
 		"lint": "eslint \"src/**\"",
 		"eject": "react-scripts eject",
-		"prepublishOnly": "npm run clean && tsc",
+		"prepublishOnly": "npm run clean && tsc --project tsconfig.npm.json",
 		"postpublish": "npm run clean && npm run zip",
 		"clean": "rm -rf dist",
 		"zip": "node scripts/zip-integration-folder.js"
