@@ -42,3 +42,21 @@ Finally, you will need to create a test component. Model this test component aft
 https://github.com/Dan503/time-input-polyfill-tests/blob/master/src/TestComponent.tsx
 
 Now run `npx cypress open` to run the tests against your component.
+
+## IMPORTANT: Tab key testing cannot be automated
+
+Due to `event.preventDefault()` not being detected by the automated Tab functionality, it is currently not possible to automate the testing of the Tab key.
+
+Expected Tab functionality:
+
+-   When input receives focus via the Tab key, select the Hours segment
+-   While Hours segment is selected, pressing Tab selects the Minutes segment
+-   While Minutes segment is selected, pressing Tab selects the Mode segment
+-   While Mode segment is selected, pressing Tab sends focus to the next focusable element on the page
+
+Expected Shift + Tab functionality:
+
+-   When input receives focus via Shift + Tab, select the Mode segment
+-   While Mode segment is selected, pressing Shift + Tab selects the Minutes segment
+-   While Minutes segment is selected, pressing Shift + Tab selects the Hours segment
+-   While Hours segment is selected, pressing Shift + Tab sends focus to the previous focusable element on the page
