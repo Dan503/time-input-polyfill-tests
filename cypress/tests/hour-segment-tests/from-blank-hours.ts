@@ -3,7 +3,7 @@ import { Utils } from "../../support/utils"
 export function fromBlankHours(utils: Utils) {
 	const { loadPrimaryInput, clearAllSegments, use, a11yHasExpectedHtml, hasReturnVal } = utils
 
-	describe('from blank hours', () => {
+	describe('Hours - From blank', () => {
 		incrementBlankHours()
 		decrementBlankHours()
 

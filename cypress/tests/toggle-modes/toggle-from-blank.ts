@@ -2,7 +2,7 @@ import { Utils } from "../../support/utils"
 
 export const toggleModeFromBlank = (utils: Utils) => {
 	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, use } = utils
-	describe('BLANK mode toggle', () => {
+	describe('Mode - BLANK toggle', () => {
 		it('UP from blank mode', () => {
 			loadPrimaryInput({ segment: 'mode' })
 				.then(use.del)

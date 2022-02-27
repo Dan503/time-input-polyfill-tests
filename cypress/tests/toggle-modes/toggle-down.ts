@@ -2,7 +2,7 @@ import { Utils } from "../../support/utils"
 
 export const toggleModeDown = (utils: Utils) => {
 	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, use } = utils
-	describe('DOWN mode toggle', () => {
+	describe('Mode - DOWN toggle', () => {
 		it('DOWN Updates mode correctly', () => {
 			loadPrimaryInput({ segment: 'mode' })
 				.then(use.downArrow)

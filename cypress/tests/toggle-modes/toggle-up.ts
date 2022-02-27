@@ -2,7 +2,7 @@ import { Utils } from "../../support/utils"
 
 export const toggleModeUp = (utils: Utils) => {
 	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, use } = utils
-	describe('UP mode toggle', () => {
+	describe('Mode - UP toggle', () => {
 		it('UP Updates mode correctly', () => {
 			loadPrimaryInput({ segment: 'mode' })
 				.then(use.upArrow)

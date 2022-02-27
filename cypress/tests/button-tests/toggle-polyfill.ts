@@ -11,7 +11,7 @@ export function toggleButton(utils: Utils) {
 	/** Time inputs can't be automated other than through direct input like this :( */
 	const setNonPolyTime = (newTime: string) => () => cyInput().type(newTime)
 
-	describe('Toggle polyfill button', () => {
+	describe('Button - Toggle polyfill', () => {
 		testToggleWorks()
 		testToggleUp()
 		testToggleDown()

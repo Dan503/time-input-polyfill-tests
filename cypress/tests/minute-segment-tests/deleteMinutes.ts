@@ -2,7 +2,7 @@ import { Utils } from "../../support/utils"
 
 export function deleteMinutes(utils: Utils) {
 	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, use } = utils
-	describe('Delete minutes', () => {
+	describe('Minutes - Delete', () => {
 		it('Should clear minutes on delete key press', () => {
 			loadPrimaryInput({ segment: 'minutes' })
 				.then(use.del)

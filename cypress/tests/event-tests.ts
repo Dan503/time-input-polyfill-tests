@@ -20,7 +20,7 @@ export function eventTests(utils: Utils) {
 	const mouseDown = () => eventTestsInput().trigger('mousedown')
 	const mouseUp = () => eventTestsInput().trigger('mouseup')
 
-	describe('Event tests', () => {
+	describe('Events', () => {
 		it('ensures events work', () => {
 			loadEventsInput({ polyfillId: IDs.eventTestsId })
 				.then(hasValue('default'))

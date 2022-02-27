@@ -4,7 +4,7 @@ import type { Utils } from "../../support/utils"
 export const hrs24Values = (utils: Utils) => {
 	const { loadPrimaryInput, cyInput, hasReturnVal, use, setTime } = utils
 
-	describe('24 hour tests', () => {
+	describe('Hours - 24 hour tests', () => {
 		increment()
 		decrement()
 
