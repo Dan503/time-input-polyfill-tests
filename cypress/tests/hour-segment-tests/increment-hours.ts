@@ -1,4 +1,4 @@
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
 export function incrementHours(utils: Utils) {
 	const { loadPrimaryInput, hasReturnVal, use, a11yHasExpectedHtml } = utils

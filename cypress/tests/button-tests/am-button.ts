@@ -1,4 +1,4 @@
-import type { Utils } from "../../support"
+import type { Utils } from "../../support/utils"
 
 export function button_am(utils: Utils) {
 	const { loadPrimaryInput, hasReturnVal, use, cySelectSegment, cyInput, IDs } = utils

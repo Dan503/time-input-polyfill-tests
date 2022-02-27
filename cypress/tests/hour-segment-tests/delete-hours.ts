@@ -1,4 +1,4 @@
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
 export function deleteHours(utils: Utils) {
 	const { loadPrimaryInput, a11yHasExpectedHtml, use, hasReturnVal } = utils

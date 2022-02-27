@@ -1,4 +1,4 @@
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
 export function fromBlankMinutes(utils: Utils) {
 	const { loadPrimaryInput, clearAllSegments, use, a11yHasExpectedHtml, hasReturnVal } = utils

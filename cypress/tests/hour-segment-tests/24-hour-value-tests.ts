@@ -1,5 +1,5 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import type { Utils } from "../../support"
+import type { Utils } from "../../support/utils"
 
 export const hrs24Values = (utils: Utils) => {
 	const { loadPrimaryInput, cyInput, hasReturnVal, use, setTime } = utils

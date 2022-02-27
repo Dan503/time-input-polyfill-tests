@@ -1,5 +1,5 @@
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { Utils } from "../../support"
+import { Utils } from "../../support/utils"
 
 export function decrementMinutes(utils: Utils) {
 	const { loadPrimaryInput, a11yHasExpectedHtml, hasReturnVal, setTime, use } = utils

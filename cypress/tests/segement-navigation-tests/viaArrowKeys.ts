@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import { getCursorSegment, Segment } from "@time-input-polyfill/utils"
 import { Utils } from "../../support/utils"
 
