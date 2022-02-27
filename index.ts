@@ -15,8 +15,21 @@ export { staticValues } from './src/core/static-values'
 export { getIDsAndLabels }
 
 export interface TimeInputTestSuiteParams {
+	/**
+	 * The url that Cypress should open when running tests
+	 */
 	localHostUrl: string
+	/**
+	 * The label of the input that the majority of the tests will run on.
+	 *
+	 * @default 'Primary tests'
+	 */
 	primaryTestsLabel?: string
+	/**
+	 * The label of the input that the event tests will be run on.
+	 *
+	 * @default 'Event tests'
+	 */
 	eventTestsLabel?: string
 }
 
