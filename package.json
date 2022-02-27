@@ -1,6 +1,6 @@
 {
 	"name": "@time-input-polyfill/tests",
-	"version": "1.0.0",
+	"version": "1.0.0-beta.3",
 	"private": false,
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
@@ -37,8 +37,9 @@
 		"test": "cypress open",
 		"lint": "eslint \"src/**\"",
 		"eject": "react-scripts eject",
-		"prepublishOnly": "tsc",
-		"postpublish": "rm -rf dist && npm run zip",
+		"prepublishOnly": "npm run clean && tsc",
+		"postpublish": "npm run clean && npm run zip",
+		"clean": "rm -rf dist",
 		"zip": "node scripts/zip-integration-folder.js"
 	},
 	"browserslist": {
