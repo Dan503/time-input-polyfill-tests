@@ -1,17 +1,17 @@
-type ValueSet = {
+export type ValueSet = {
 	cpuValue: string,
 	inputValue: string,
 	labelValue: string
 }
 
-type StaticValues = {
+export type StaticValuesType = {
 	defaultValue: ValueSet
 	buttonAM: ValueSet
 	buttonPM: ValueSet
 	buttonBlank: ValueSet
 }
 
-export const staticValues: StaticValues = {
+export const staticValues: StaticValuesType = {
 	defaultValue: {
 		cpuValue: '20:30',
 		inputValue: '08:30 PM',
