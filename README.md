@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# Time Input Polyfill Tests
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project aims to bring consistent high quality tests to all of my Time Input Polyfill projects.
 
-## Available Scripts
+By incorporating these tests I can feel confident that any current and future time input polyfills behave consistently and as expected.
 
-In the project directory, you can run:
+## Getting started
 
-### `yarn start`
+### Install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm i -D @time-input-polyfill/tests
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You will also need to install [Cypress](https://www.cypress.io/) into your project:
 
-### `yarn test`
+```
+npm install cypress
+npx cypress open
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Setting up
 
-### `yarn build`
+Then delete everything inside the `cypress/integration` folder and replace it with the contents of this zip file:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+https://github.com/Dan503/time-input-polyfill-tests/raw/master/cypress/integration.zip
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Next create a `testSuite.js` file in the `cypress/support` folder.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+import { TimeInputTestSuite } from '@time-input-polyfill/tests'
 
-### `yarn eject`
+export const testSuite = new TimeInputTestSuite({
+	localHostUrl: 'http://localhost:3000',
+	primaryTestsLabel: 'Label for the primary test input', // default = 'Primary tests'
+	eventTestsLabel: 'Label for the events test input', // default = 'Event tests'
+})
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Finally, you will need to create a test component. Model this test component after the test component found here:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+https://github.com/Dan503/time-input-polyfill-tests/blob/master/src/TestComponent.tsx
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Now run `npx cypress open` to run the tests against your component.
