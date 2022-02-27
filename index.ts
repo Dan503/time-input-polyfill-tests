@@ -7,6 +7,7 @@ import { MinuteSegmentTests } from './cypress/tests/minute-segment-tests'
 import { SegmentNavigationTests } from './cypress/tests/segement-navigation-tests'
 import { ModeSegmentTests } from './cypress/tests/toggle-modes'
 import { eventTests } from './cypress/tests/event-tests'
+import { MiscellaneousTests } from './cypress/tests/miscellaneous-tests'
 
 export interface TimeInputTestSuiteParams {
 	primaryTestsLabel: string
@@ -35,6 +36,7 @@ class Tests {
 	mode: ModeSegmentTests
 	manualEntry: ManualEntryTests
 	segmentNavigation: SegmentNavigationTests
+	miscellaneous: MiscellaneousTests
 	events: () => void
 	all: () => void
 
@@ -45,6 +47,7 @@ class Tests {
 		this.mode = new ModeSegmentTests(utils)
 		this.manualEntry = new ManualEntryTests(utils)
 		this.segmentNavigation = new SegmentNavigationTests(utils)
+		this.miscellaneous = new MiscellaneousTests(utils)
 		this.events = () => eventTests(utils)
 
 		this.all = () => {
