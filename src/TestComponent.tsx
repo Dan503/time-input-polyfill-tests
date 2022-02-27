@@ -2,9 +2,9 @@ import { useState } from 'react'
 // import TimeInputPolyfill from 'react-time-input-polyfill'
 import TimeInputPolyfill from '@time-input-polyfill/react'
 import type { AltEventName, EventName } from '../cypress/support/supportTypes'
-import { testSuite } from './AppTestSuite'
+import { getIDsAndLabels } from './core/IDs-and-labels'
 
-const { labels, IDs } = testSuite
+const { labels, IDs } = getIDsAndLabels()
 const { primaryTestsLabel, eventTestsLabel } = labels
 const {
 	primaryInputID,

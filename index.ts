@@ -1,4 +1,4 @@
-import type { Labels, IDs } from './cypress/support/utils'
+import { Labels, IDs } from './cypress/support/utils'
 import { Utils } from './cypress/support/utils'
 import { ButtonTests } from './cypress/tests/button-tests'
 import { HourSegmentTests } from './cypress/tests/hour-segment-tests'
@@ -8,11 +8,14 @@ import { SegmentNavigationTests } from './cypress/tests/segement-navigation-test
 import { ModeSegmentTests } from './cypress/tests/toggle-modes'
 import { eventTests } from './cypress/tests/event-tests'
 import { MiscellaneousTests } from './cypress/tests/miscellaneous-tests'
+import { getIDsAndLabels } from './src/core/IDs-and-labels'
+
+export { getIDsAndLabels }
 
 export interface TimeInputTestSuiteParams {
-	primaryTestsLabel: string
-	eventTestsLabel: string
 	localHostUrl: string
+	primaryTestsLabel?: string
+	eventTestsLabel?: string
 }
 
 export class TimeInputTestSuite {
@@ -22,7 +25,8 @@ export class TimeInputTestSuite {
 	tests: Tests
 
 	constructor({ primaryTestsLabel, eventTestsLabel, localHostUrl }: TimeInputTestSuiteParams) {
-		this.utils = new Utils({ primaryTestsLabel, eventTestsLabel, localHostUrl })
+		const IDsAndLabels = getIDsAndLabels({ primaryTestsLabel, eventTestsLabel })
+		this.utils = new Utils({ IDsAndLabels, localHostUrl })
 		this.labels = this.utils.labels
 		this.IDs = this.utils.IDs
 		this.tests = new Tests(this.utils)
@@ -57,6 +61,7 @@ class Tests {
 			this.mode.all()
 			this.manualEntry.all()
 			this.segmentNavigation.all()
+			this.miscellaneous.all()
 			this.events()
 		}
 	}

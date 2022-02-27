@@ -1,5 +1,6 @@
 import type { Segment } from "@time-input-polyfill/utils"
-import { toLeadingZero, a11yID } from "@time-input-polyfill/utils"
+import { toLeadingZero } from "@time-input-polyfill/utils"
+import { IDsAndLabelsType } from "../../src/core/IDs-and-labels"
 
 type GetCyElem = () => Cypress.Chainable<JQuery<HTMLElement>>
 
@@ -39,8 +40,7 @@ export type IDs = {
 }
 
 export interface UtilParams {
-	primaryTestsLabel: string
-	eventTestsLabel: string
+	IDsAndLabels: IDsAndLabelsType
 	localHostUrl: string
 }
 
@@ -65,26 +65,11 @@ export class Utils {
 	use: Use
 	localHostUrl: string
 
-	constructor({ primaryTestsLabel, eventTestsLabel, localHostUrl }: UtilParams) {
+	constructor({ IDsAndLabels, localHostUrl }: UtilParams) {
 		this.localHostUrl = localHostUrl
-		this.labels = { primaryTestsLabel, eventTestsLabel }
-		const primaryInputID = primaryTestsLabel.toLowerCase().replaceAll(' ', '-')
-		const eventsInputID = eventTestsLabel.toLowerCase().replaceAll(' ', '-')
-		this.IDs = {
-			primaryInputID,
-			primaryValueID: `${primaryInputID}-primary-value`,
-			buttonIDs: {
-				amID: `${primaryInputID}-am-button`,
-				pmID: `${primaryInputID}-pm-button`,
-				blankID: `${primaryInputID}-blank-button`,
-				togglePolyfillID: `${primaryInputID}-toggle-polyfill-button`,
-			},
-			eventsInputID,
-			eventsValueID: `${eventsInputID}-event-value`,
-			eventsMainNameID: `${eventsInputID}-main-event-name`,
-			eventsAltNameID: `${eventsInputID}-alt-event-name`,
-			a11yID,
-		}
+		this.labels = IDsAndLabels.labels
+		this.IDs = IDsAndLabels.IDs
+
 		this.use = {
 			upArrow: () => this.cyInput().trigger('keydown', { key: 'ArrowUp' }).trigger('keyup', { key: 'ArrowUp' }).wait(10),
 			downArrow: () => this.cyInput().trigger('keydown', { key: 'ArrowDown' }).trigger('keyup', { key: 'ArrowDown' }).wait(10),
