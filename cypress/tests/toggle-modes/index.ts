@@ -4,15 +4,15 @@ import { toggleModeFromBlank } from './toggle-from-blank'
 import { TestSuite, Utils } from '../../support/utils'
 
 export class ModeSegmentTests extends TestSuite {
-	toggleModeUp: () => void
-	toggleModeDown: () => void
-	toggleModeFromBlank: () => void
+	up: () => void
+	down: () => void
+	fromBlank: () => void
 
 	constructor(utils: Utils) {
 		super(utils)
 
-		this.toggleModeUp = () => toggleModeUp(utils)
-		this.toggleModeDown = () => toggleModeDown(utils)
-		this.toggleModeFromBlank = () => toggleModeFromBlank(utils)
+		this.up = () => toggleModeUp(utils)
+		this.down = () => toggleModeDown(utils)
+		this.fromBlank = () => toggleModeFromBlank(utils)
 	}
 }
