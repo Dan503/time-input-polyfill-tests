@@ -1660,15 +1660,15 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@time-input-polyfill/react@^2.0.1":
-  "integrity" "sha512-uNjqJraJske4PkqBdNwFqlSlAOotT2XN08VC2J0urktMvehigRr7Q8y61Ph0jGr8vOpJG5c7wxaAsirgicB+mg=="
-  "resolved" "https://registry.npmjs.org/@time-input-polyfill/react/-/react-2.0.1.tgz"
-  "version" "2.0.1"
+"@time-input-polyfill/react@^2.0.2":
+  "integrity" "sha512-orc4jkU8YpPbzdaz1mUPJ2xTeCsdMHvCmEddyz5nOXmnqxbPnRhr/Yve6GCpCvb2JjMvEjh5udpzWi0sD173iA=="
+  "resolved" "https://registry.npmjs.org/@time-input-polyfill/react/-/react-2.0.2.tgz"
+  "version" "2.0.2"
   dependencies:
     "@dan503/load-js" "^1.0.7"
-    "@time-input-polyfill/utils" "^1.0.2"
+    "@time-input-polyfill/utils" "^1.0.4"
 
-"@time-input-polyfill/utils@^1.0.2", "@time-input-polyfill/utils@^1.0.4":
+"@time-input-polyfill/utils@^1.0.4":
   "integrity" "sha512-E1vhL7M2rEJ1RcmbI50gaYlnNzmNI0pjwlFrFi6K0pWrx1x34cH0UCjP8wfgna5nuY32d9Y5Z/raxeKmC17mIQ=="
   "resolved" "https://registry.npmjs.org/@time-input-polyfill/utils/-/utils-1.0.4.tgz"
   "version" "1.0.4"
@@ -3340,7 +3340,7 @@
   "resolved" "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz"
   "version" "0.12.0"
 
-"chai@^4.3.6":
+"chai@*":
   "integrity" "sha512-bbcp3YfHCUzMOvKqsztczerVgBKSsEijCySNlHHbX3VG1nskvqjz5Rfso1gGwD6w6oOV3eI60pKuMOV5MV7p3Q=="
   "resolved" "https://registry.npmjs.org/chai/-/chai-4.3.6.tgz"
   "version" "4.3.6"

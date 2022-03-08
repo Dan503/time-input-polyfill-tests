@@ -5,10 +5,10 @@
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"dependencies": {
-		"@time-input-polyfill/react": "^2.0.1",
+		"@time-input-polyfill/react": "^2.0.2",
 		"@time-input-polyfill/utils": "^1.0.4",
-		"cypress-plugin-tab": "^1.0.5",
-		"chai": "*"
+		"chai": "*",
+		"cypress-plugin-tab": "^1.0.5"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.16.1",
