@@ -1,7 +1,7 @@
-// Need to import from json or CommonJS and mjs conflicts cause issues
-import universalValues from '@time-input-polyfill/utils/universalValues.json'
-
-const { a11yID } = universalValues
+// npm is being a pain in the ass
+// have to hard code rather than import from @time-input-polyfill/utils
+// If you change this here @time-input-polyfill/utils also needs to be updated
+const a11yID = 'time-input-polyfill-accessibility-block'
 
 export type Labels = {
 	primaryTestsLabel: string
