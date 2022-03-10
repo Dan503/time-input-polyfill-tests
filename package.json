@@ -1,12 +1,12 @@
 {
 	"name": "@time-input-polyfill/tests",
-	"version": "1.0.0",
+	"version": "1.0.1-beta.1",
 	"private": false,
 	"main": "dist/cjs/index.js",
 	"module": "dist/mjs/index.js",
 	"dependencies": {
 		"@time-input-polyfill/react": "^2.0.2",
-		"@time-input-polyfill/utils": "^1.0.4",
+		"@time-input-polyfill/utils": "^2.0.0-beta.8",
 		"chai": "*",
 		"cypress-plugin-tab": "^1.0.5"
 	},
