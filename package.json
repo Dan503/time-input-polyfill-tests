@@ -40,7 +40,9 @@
 		"prepublishOnly": "npm run clean && npx tsc -p tsconfig.mjs.json && npx tsc -p tsconfig.cjs.json && node ./packagingScript.js",
 		"postpublish": "npm run clean && npm run zip",
 		"clean": "rm -rf dist",
-		"zip": "node scripts/zip-integration-folder.js"
+		"zip": "node scripts/zip-integration-folder.js",
+		"pub": "npm publish --access=public",
+		"pub-beta": "npm publish --access=public --tag beta"
 	},
 	"browserslist": {
 		"production": [
