@@ -1,4 +1,7 @@
-import { a11yID } from '@time-input-polyfill/utils'
+// Need to import from json or CommonJS and mjs conflicts cause issues
+import universalValues from '@time-input-polyfill/utils/universalValues.json'
+
+const { a11yID } = universalValues
 
 export type Labels = {
 	primaryTestsLabel: string

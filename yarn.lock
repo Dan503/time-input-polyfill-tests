@@ -1673,10 +1673,10 @@
   "resolved" "https://registry.npmjs.org/@time-input-polyfill/utils/-/utils-1.0.4.tgz"
   "version" "1.0.4"
 
-"@time-input-polyfill/utils@^2.0.0-beta.8":
-  "integrity" "sha512-6ymgO+e7JfjMuNYZQpMV9Ct05GVD4Qvw9xNYYuDNwGt3j0QFAsobJ1xEjbrFaXKZZQOktvZG7W3VUflTUbTRkQ=="
-  "resolved" "https://registry.npmjs.org/@time-input-polyfill/utils/-/utils-2.0.0-beta.8.tgz"
-  "version" "2.0.0-beta.8"
+"@time-input-polyfill/utils@^2.0.0-beta.9":
+  "integrity" "sha512-qQrY1VA0W74JvHR/YFDmI22s6LTl4Tf+DA9E8cq8Y6NGKjc/lU7uPeFdcnHbnIypkfwWYLLZdOFsSIPY6BrFlw=="
+  "resolved" "https://registry.npmjs.org/@time-input-polyfill/utils/-/utils-2.0.0-beta.9.tgz"
+  "version" "2.0.0-beta.9"
 
 "@tootallnate/once@1":
   "integrity" "sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw=="
