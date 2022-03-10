@@ -23,7 +23,7 @@ npx cypress open
 
 Then delete everything inside the `cypress/integration` folder and replace it with the contents of this zip file:
 
-https://github.com/Dan503/time-input-polyfill-tests/raw/master/cypress/integration.zip
+https://github.com/Dan503/time-input-polyfill-tests/raw/main/cypress/integration.zip
 
 Next create a `testSuite.js` file in the `cypress/support` folder.
 
@@ -39,7 +39,7 @@ export const testSuite = new TimeInputTestSuite({
 
 Finally, you will need to create a test component. Model this test component after the test component found here:
 
-https://github.com/Dan503/time-input-polyfill-tests/blob/master/src/TestComponent.tsx
+https://github.com/Dan503/time-input-polyfill-tests/blob/main/src/TestComponent.tsx
 
 ## Running the project
 
