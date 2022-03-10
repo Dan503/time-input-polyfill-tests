@@ -2,8 +2,8 @@
 	"name": "@time-input-polyfill/tests",
 	"version": "1.0.0",
 	"private": false,
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"main": "dist/cjs/index.js",
+	"module": "dist/mjs/index.js",
 	"dependencies": {
 		"@time-input-polyfill/react": "^2.0.2",
 		"@time-input-polyfill/utils": "^1.0.4",
@@ -37,7 +37,7 @@
 		"test": "cypress open",
 		"lint": "eslint \"src/**\"",
 		"eject": "react-scripts eject",
-		"prepublishOnly": "npm run clean && tsc --project tsconfig.npm.json",
+		"prepublishOnly": "npm run clean && npx tsc -p tsconfig.mjs.json && npx tsc -p tsconfig.cjs.json && node ./packagingScript.js",
 		"postpublish": "npm run clean && npm run zip",
 		"clean": "rm -rf dist",
 		"zip": "node scripts/zip-integration-folder.js"

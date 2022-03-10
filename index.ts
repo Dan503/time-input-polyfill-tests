@@ -11,6 +11,7 @@ import { MiscellaneousTests } from './cypress/tests/miscellaneous-tests'
 import { getIDsAndLabels } from './src/core/IDs-and-labels'
 
 export * from './src/core/index'
+export { getIDsAndLabels }
 
 export interface TimeInputTestSuiteParams {
 	/**

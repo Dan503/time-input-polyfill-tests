@@ -1,26 +1,30 @@
 {
 	"compilerOptions": {
 		"target": "es5",
-		"types": ["cypress"],
+		"strict": true,
+		"alwaysStrict": true,
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
-		"strict": true,
 		"forceConsistentCasingInFileNames": true,
-		"declaration": true,
 		"outDir": "dist",
 		"noFallthroughCasesInSwitch": true,
-		"module": "commonjs",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"jsx": "preserve"
+		"jsx": "react-jsx",
+		"isolatedModules": true
 	},
-	"include": ["src", "**/*.ts"],
+	"files": ["./index.ts"],
+	"include": [
+		"./src/core/**/*.ts",
+		"./cypress/support/**/*.ts",
+		"./cypress/tests/**/*.ts"
+	],
 	"exclude": [
-		"node_modules",
-		"dist",
+		"./node_modules",
+		"*.test.ts",
 		"cypress/tests/segement-navigation-tests/viaTabKey.ts"
 	]
 }

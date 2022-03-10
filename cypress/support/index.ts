@@ -21,3 +21,5 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+export * from './testSuite'
+export * from './utils'
