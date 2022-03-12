@@ -1,4 +1,3 @@
-import { Labels, IDs } from './cypress/support/utils'
 import { Utils } from './cypress/support/utils'
 import { ButtonTests } from './cypress/tests/button-tests'
 import { HourSegmentTests } from './cypress/tests/hour-segment-tests'
@@ -8,7 +7,7 @@ import { SegmentNavigationTests } from './cypress/tests/segement-navigation-test
 import { ModeSegmentTests } from './cypress/tests/toggle-modes'
 import { EventTests } from './cypress/tests/event-tests'
 import { MiscellaneousTests } from './cypress/tests/miscellaneous-tests'
-import { getIDsAndLabels } from './src/core/IDs-and-labels'
+import { getIDsAndLabels, Labels, IDs } from './src/core/IDs-and-labels'
 
 export * from './src/core/index'
 export { getIDsAndLabels }
