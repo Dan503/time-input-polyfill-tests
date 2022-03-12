@@ -1,6 +1,6 @@
 import type { Segment } from "@time-input-polyfill/utils"
 import { toLeadingZero } from "@time-input-polyfill/utils"
-import { IDsAndLabelsType } from "../../src/core/IDs-and-labels"
+import { IDsAndLabelsType, Labels, IDs } from "../../src/core/IDs-and-labels"
 
 type GetCyElem = () => Cypress.Chainable<JQuery<HTMLElement>>
 
@@ -17,26 +17,6 @@ export class TestSuite {
 			})
 		}
 	}
-}
-
-export type Labels = {
-	primaryTestsLabel: string
-	eventTestsLabel: string
-}
-export type IDs = {
-	primaryInputID: string,
-	primaryValueID: string,
-	buttonIDs: {
-		togglePolyfillID: string,
-		amID: string,
-		pmID: string,
-		blankID: string,
-	},
-	eventsInputID: string,
-	eventsValueID: string,
-	eventsMainNameID: string,
-	eventsAltNameID: string,
-	a11yID: string
 }
 
 export interface UtilParams {

@@ -16,11 +16,14 @@ export type IDs = {
 		amID: string,
 		pmID: string,
 		blankID: string,
+		submitID: string,
 	},
 	eventsInputID: string,
 	eventsValueID: string,
 	eventsMainNameID: string,
 	eventsAltNameID: string,
+	eventsFormID: string,
+	eventsFormValueID: string,
 	a11yID: string
 }
 
@@ -47,11 +50,14 @@ export const getIDsAndLabels = ({ primaryTestsLabel = 'Primary tests', eventTest
 			pmID: `${primaryInputID}-pm-button`,
 			blankID: `${primaryInputID}-blank-button`,
 			togglePolyfillID: `${primaryInputID}-toggle-polyfill-button`,
+			submitID: `${eventsInputID}-submit`,
 		},
 		eventsInputID,
 		eventsValueID: `${eventsInputID}-event-value`,
 		eventsMainNameID: `${eventsInputID}-main-event-name`,
 		eventsAltNameID: `${eventsInputID}-alt-event-name`,
+		eventsFormID: `${eventsInputID}-form`,
+		eventsFormValueID: `${eventsInputID}-form-value`,
 		a11yID,
 	}
 

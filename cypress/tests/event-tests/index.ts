@@ -1,10 +1,15 @@
-import { Utils } from '../../support/utils'
-import { eventTests } from './event-tests'
+import { Utils, TestSuite } from '../../support/utils'
+import { inputEventTests } from './input-event-tests'
+import { formSubmitTests } from './form-submit-tests'
 
-export class EventTests {
-	all: () => void
+export class EventTests extends TestSuite {
+	inputEvents: () => void
+	formSubmit: () => void
 
 	constructor(utils: Utils) {
-		this.all = () => eventTests(utils)
+		super(utils)
+
+		this.inputEvents = () => inputEventTests(utils)
+		this.formSubmit = () => formSubmitTests(utils)
 	}
 }
