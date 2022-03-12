@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FormEvent, useRef, useState } from 'react'
 import TimeInputPolyfill from '@time-input-polyfill/react'
 
 import {
@@ -20,6 +20,8 @@ const {
 	eventsValueID,
 	eventsMainNameID,
 	eventsAltNameID,
+	eventsFormID,
+	eventsFormValueID,
 } = IDs
 
 export function TestComponent() {
@@ -35,6 +37,17 @@ export function TestComponent() {
 	)
 	const [eventName, setEventName] = useState<EventMainName>('none')
 	const [altEventName, setAltEventName] = useState<EventAltName>('none')
+	const [submittedValue, setSubmittedValue] = useState<string>()
+
+	const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		// This could be done much cleaner if the React Time Input Polyfill had ref support
+		// https://github.com/Dan503/react-time-input-polyfill/issues/28
+		const inputValue = (
+			document.getElementById(eventsInputID) as HTMLInputElement | null
+		)?.value
+		setSubmittedValue(inputValue)
+	}
 
 	return (
 		<div className="TestComponent">
@@ -95,7 +108,7 @@ export function TestComponent() {
 
 			<h2>Event tests</h2>
 
-			<div>
+			<form id={eventsFormID} onSubmit={handleFormSubmit}>
 				<label htmlFor={eventsInputID}>{eventTestsLabel}</label>
 				<br />
 				<TimeInputPolyfill
@@ -139,7 +152,11 @@ export function TestComponent() {
 				<p id={eventsValueID}>{eventInputValue}</p>
 				<p id={eventsMainNameID}>{eventName}</p>
 				<p id={eventsAltNameID}>{altEventName}</p>
-			</div>
+				<button id={buttonIDs.submitID} type="submit">
+					Submit form
+				</button>
+				<p id={eventsFormValueID}>{submittedValue}</p>
+			</form>
 		</div>
 	)
 }
