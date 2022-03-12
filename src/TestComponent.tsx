@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import TimeInputPolyfill from '@time-input-polyfill/react'
 
 import {
@@ -37,16 +37,21 @@ export function TestComponent() {
 	)
 	const [eventName, setEventName] = useState<EventMainName>('none')
 	const [altEventName, setAltEventName] = useState<EventAltName>('none')
-	const [submittedValue, setSubmittedValue] = useState<string>()
+	const [submittedValue, setSubmittedValue] = useState<string>(
+		staticValues.defaultValue.inputValue,
+	)
 
 	const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		// This could be done much cleaner if the React Time Input Polyfill had ref support
 		// https://github.com/Dan503/react-time-input-polyfill/issues/28
-		const inputValue = (
-			document.getElementById(eventsInputID) as HTMLInputElement | null
-		)?.value
-		setSubmittedValue(inputValue)
+		const inputElem = document.getElementById(
+			eventsInputID,
+		) as HTMLInputElement | null
+
+		if (inputElem) {
+			setSubmittedValue(inputElem.value)
+		}
 	}
 
 	return (

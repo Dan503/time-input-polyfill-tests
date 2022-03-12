@@ -2,7 +2,7 @@ import { staticValues } from "../../.."
 import { EventAltName, EventMainName } from "../../../src/core/supportTypes"
 import { Utils } from "../../support/utils"
 
-export function eventTests(utils: Utils) {
+export function inputEventTests(utils: Utils) {
 	const { loadEventsInput, IDs } = utils
 
 	const eventTestsInput = () => cy.get(`#${IDs.eventsInputID}`)
