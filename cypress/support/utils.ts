@@ -2,7 +2,7 @@ import type { Segment } from "@time-input-polyfill/utils"
 import { toLeadingZero } from "@time-input-polyfill/utils"
 import { IDsAndLabelsType, Labels, IDs } from "../../src/core/IDs-and-labels"
 
-type GetCyElem = () => Cypress.Chainable<JQuery<HTMLElement>>
+type GetCyElem = () => Cypress.Chainable<JQuery<HTMLInputElement>>
 
 export class TestSuite {
 	all: () => void
@@ -51,15 +51,15 @@ export class Utils {
 		this.IDs = IDsAndLabels.IDs
 
 		this.use = {
-			upArrow: () => this.cyInput().trigger('keydown', { key: 'ArrowUp' }).trigger('keyup', { key: 'ArrowUp' }).wait(10),
-			downArrow: () => this.cyInput().trigger('keydown', { key: 'ArrowDown' }).trigger('keyup', { key: 'ArrowDown' }).wait(10),
-			leftArrow: () => this.cyInput().trigger('keydown', { key: 'ArrowLeft' }).trigger('keyup', { key: 'ArrowLeft' }).wait(10),
-			rightArrow: () => this.cyInput().trigger('keydown', { key: 'ArrowRight' }).trigger('keyup', { key: 'ArrowRight' }).wait(10),
+			upArrow: () => this.cyPrimaryInput().trigger('keydown', { key: 'ArrowUp' }).trigger('keyup', { key: 'ArrowUp' }).wait(10),
+			downArrow: () => this.cyPrimaryInput().trigger('keydown', { key: 'ArrowDown' }).trigger('keyup', { key: 'ArrowDown' }).wait(10),
+			leftArrow: () => this.cyPrimaryInput().trigger('keydown', { key: 'ArrowLeft' }).trigger('keyup', { key: 'ArrowLeft' }).wait(10),
+			rightArrow: () => this.cyPrimaryInput().trigger('keydown', { key: 'ArrowRight' }).trigger('keyup', { key: 'ArrowRight' }).wait(10),
 			// Tab can't be tested due to e.preventDefault() not being supported
 			// tab: () => cyInput().tab(),
 			// shiftTab: () => cyInput().tab({ shift: true }),
-			del: () => this.cyInput().trigger('keydown', { key: 'Delete' }).trigger('keyup', { key: 'Delete' }).wait(10),
-			backspace: () => this.cyInput().trigger('keydown', { key: 'Backspace' }).trigger('keyup', { key: 'Backspace' }).wait(10)
+			del: () => this.cyPrimaryInput().trigger('keydown', { key: 'Delete' }).trigger('keyup', { key: 'Delete' }).wait(10),
+			backspace: () => this.cyPrimaryInput().trigger('keydown', { key: 'Backspace' }).trigger('keyup', { key: 'Backspace' }).wait(10)
 		}
 
 		// `this` isn't always defined. Have to force it to get bound correctly using this method :(
@@ -68,14 +68,29 @@ export class Utils {
 		bind('loadTestPage')
 		bind('loadPrimaryInput')
 		bind('loadEventsInput')
-		bind('cyInput')
+		bind('cyPrimaryInput')
+		bind('cyPrimaryCpuValue')
+		bind('cyEventsInput')
+		bind('cyEventsCpuValue')
+		bind('cyEventsMainName')
+		bind('cyEventsAltName')
+		bind('cyForm')
+		bind('cyFormSubmitButton')
+		bind('cyFormCpuValue')
 		bind('cyA11y')
-		bind('cySelectSegment')
 		bind('$input')
-		bind('hasReturnVal')
+		bind('hasPrimaryInputValue')
+		bind('hasPrimaryCpuValue')
+		bind('hasFormCpuValue')
+		bind('hasEventsInputValue')
+		bind('hasEventsCpuValue')
+		bind('hasEventsMainName')
+		bind('hasEventsAltName')
+		bind('clickButton')
 		bind('a11yInitialHtml')
 		bind('a11yHasExpectedHtml')
 		bind('sendFocus')
+		bind('cySelectSegment')
 		bind('setTime')
 		bind('clearAllSegments')
 	}
@@ -83,9 +98,9 @@ export class Utils {
 	loadTestPage({ segment, polyfillId, url = this.localHostUrl, }: LoadTestPageParams = {}) {
 		return cy.visit(url).wait(100).then(() => {
 			if (segment) {
-				return this.cySelectSegment(segment)
+				return this.cySelectSegment(segment)()
 			}
-			return cy.get(`#${polyfillId}`).wait(10)
+			return cy.get<HTMLInputElement>(`#${polyfillId}`).wait(10)
 		})
 	}
 
@@ -99,7 +114,17 @@ export class Utils {
 		...params
 	})
 
-	cyInput = () => cy.get(`#${this.IDs.primaryInputID}`)
+	cyPrimaryInput = () => cy.get<HTMLInputElement>(`#${this.IDs.primaryInputID}`)
+	cyPrimaryCpuValue = () => cy.get(`#${this.IDs.primaryCpuValueID}`)
+
+	cyEventsInput = () => cy.get<HTMLInputElement>(`#${this.IDs.eventsInputID}`)
+	cyEventsCpuValue = () => cy.get(`#${this.IDs.eventsCpuValueID}`)
+	cyEventsMainName = () => cy.get(`#${this.IDs.eventsMainNameID}`)
+	cyEventsAltName = () => cy.get(`#${this.IDs.eventsAltNameID}`)
+
+	cyForm = () => cy.get(`#${this.IDs.formID}`)
+	cyFormSubmitButton = () => cy.get<HTMLButtonElement>(`#${this.IDs.buttonIDs.submitID}`)
+	cyFormCpuValue = () => cy.get(`#${this.IDs.formCpuValueID}`)
 
 	cyA11y = () => cy.get(`#${this.IDs.a11yID}`)
 
@@ -107,11 +132,46 @@ export class Utils {
 		return jQueryInput[0] as HTMLInputElement
 	}
 
-	hasReturnVal = (expectation: string) => () => {
-		return cy.get(`#${this.IDs.primaryValueID}`)
+	hasPrimaryInputValue = (expectation: string) => () => {
+		return this.cyPrimaryInput()
 			.wait(10)
+			.should('have.value', expectation)
+			.then(this.cyPrimaryInput)
+	}
+	hasPrimaryCpuValue = (expectation: string) => () => {
+		return this.cyPrimaryCpuValue()
 			.should('have.text', expectation)
-			.then(this.cyInput)
+			.then(this.cyPrimaryInput)
+	}
+	hasFormCpuValue = (expectation: string) => () => {
+		return this.cyFormCpuValue()
+			.should('have.text', expectation)
+			.then(this.cyEventsInput)
+	}
+	hasEventsInputValue = (expectation: string) => () => {
+		return this.cyEventsInput()
+			.wait(10)
+			.should('have.value', expectation)
+			.then(this.cyEventsInput)
+	}
+	hasEventsCpuValue = (expectation: string) => () => {
+		return this.cyEventsCpuValue()
+			.should('have.text', expectation)
+			.then(this.cyEventsInput)
+	}
+	hasEventsMainName = (expectation: string) => () => {
+		return this.cyEventsMainName()
+			.should('have.text', expectation)
+			.then(this.cyEventsInput)
+	}
+	hasEventsAltName = (expectation: string) => () => {
+		return this.cyEventsAltName()
+			.should('have.text', expectation)
+			.then(this.cyEventsInput)
+	}
+
+	clickButton = (buttonId: string, inputId = this.IDs.primaryInputID) => () => {
+		return cy.get(`#${buttonId}`).click().wait(10).then(() => cy.get(`#${inputId}`))
 	}
 
 	a11yInitialHtml(value?: number | string): A11yInitialHtmlReturn {
@@ -125,12 +185,12 @@ export class Utils {
 	}
 
 	a11yHasExpectedHtml(expectedHtml: string) {
-		return () => this.cyA11y().wait(10).should('have.html', expectedHtml).then(this.cyInput)
+		return () => this.cyA11y().wait(10).should('have.html', expectedHtml).then(this.cyPrimaryInput)
 	}
 
-	sendFocus = () => this.cyInput().focus().wait(100)
+	sendFocus = () => this.cyPrimaryInput().focus().wait(100)
 
-	cySelectSegment(segmentToEndOn: Segment) {
+	cySelectSegment = (segmentToEndOn: Segment) => () => {
 		const inputSelection = this.sendFocus()
 
 		const targets = {
@@ -146,7 +206,7 @@ export class Utils {
 		const regex = /(\d\d):(\d\d) ([AP]M)/i
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const [_match, hrs12, minutes, mode] = regex.exec(string12hr) || []
-		const inputSelection = this.cySelectSegment('hrs12').type(`${hrs12}${minutes}${mode}`)
+		const inputSelection = this.cySelectSegment('hrs12')().type(`${hrs12}${minutes}${mode}`)
 
 		const targets = {
 			hrs12: () => inputSelection.then(this.use.leftArrow).then(this.use.leftArrow),
@@ -158,13 +218,13 @@ export class Utils {
 	}
 
 	clearAllSegments(segmentToEndOn: Segment) {
-		return this.cyInput().focus().type('{del}').should('have.value', '--:30 PM')
-			.then(() => this.use.rightArrow())
-			.then(() => this.cyInput().type('{del}').should('have.value', '--:-- PM'))
-			.then(() => this.use.rightArrow())
-			.then(() => this.cyInput().type('{del}').should('have.value', '--:-- --'))
-			.then(() => this.cyInput().blur())
-			.then(() => this.cySelectSegment(segmentToEndOn))
+		return this.cyPrimaryInput().focus().type('{del}').should('have.value', '--:30 PM')
+			.then(this.use.rightArrow)
+			.then(() => this.cyPrimaryInput().type('{del}').should('have.value', '--:-- PM'))
+			.then(this.use.rightArrow)
+			.then(() => this.cyPrimaryInput().type('{del}').should('have.value', '--:-- --'))
+			.then(() => this.cyPrimaryInput().blur())
+			.then(this.cySelectSegment(segmentToEndOn))
 	}
 }
 

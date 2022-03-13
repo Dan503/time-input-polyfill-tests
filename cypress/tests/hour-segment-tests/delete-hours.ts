@@ -1,7 +1,7 @@
 import { Utils } from "../../support/utils"
 
 export function deleteHours(utils: Utils) {
-	const { loadPrimaryInput, a11yHasExpectedHtml, use, hasReturnVal } = utils
+	const { loadPrimaryInput, a11yHasExpectedHtml, use, hasPrimaryCpuValue } = utils
 
 	describe('Hours - Delete', () => {
 		it('Should clear hours on delete key press', () => {
@@ -9,14 +9,14 @@ export function deleteHours(utils: Utils) {
 				.then(use.del)
 				.should('have.value', '--:30 PM')
 				.then(a11yHasExpectedHtml(`<p>blank.</p>`))
-				.then(hasReturnVal(''))
+				.then(hasPrimaryCpuValue(''))
 		})
 		it('Should clear hours on backspace key press', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.backspace)
 				.should('have.value', '--:30 PM')
 				.then(a11yHasExpectedHtml(`<p>blank.</p>`))
-				.then(hasReturnVal(''))
+				.then(hasPrimaryCpuValue(''))
 		})
 	})
 }

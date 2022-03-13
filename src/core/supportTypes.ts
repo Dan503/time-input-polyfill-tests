@@ -7,6 +7,7 @@ export type EventMainName =
 	| 'keyDown'
 	| 'keyUp'
 	| 'none'
+	| 'submit'
 
 export type EventAltName =
 	| 'change'

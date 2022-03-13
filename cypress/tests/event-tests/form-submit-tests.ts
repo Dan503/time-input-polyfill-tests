@@ -3,25 +3,21 @@ import { Utils } from "../../support";
 
 export function formSubmitTests(utils: Utils) {
 	describe('Form Submit', () => {
-		const { loadEventsInput, IDs } = utils
-		const eventTestsInput = () => cy.get(`#${IDs.eventsInputID}`)
-		const submissionValueElem = () => cy.get(`#${IDs.eventsFormValueID}`)
-		const submitButtonElem = () => cy.get(`#${IDs.buttonIDs.submitID}`)
-
-		const hasInputValue = (value: string) => () => eventTestsInput().should('have.value', value).then(eventTestsInput)
-		const hasSubmissionValue = (value: string) => () => submissionValueElem().should('have.text', value).then(eventTestsInput)
+		const { loadEventsInput, hasEventsInputValue, hasFormCpuValue, hasEventsMainName, cyFormSubmitButton: cyFormSubmitButton } = utils
 
 		it('Has correct starting value', () => {
-			loadEventsInput().then(hasSubmissionValue(staticValues.defaultValue.inputValue))
+			loadEventsInput().then(hasEventsInputValue(staticValues.defaultValue.inputValue))
 		})
 		it('Has correct submission value and correct final input value', () => {
 			loadEventsInput()
-				.then(submitButtonElem)
+				// Don't use the clickButton util, it has a delay to wait for state to settle.
+				// For this test to be valid it needs to test that the submitted value is updated immediately.
+				.then(cyFormSubmitButton)
 				.click()
-				.then(hasSubmissionValue(staticValues.defaultValue.cpuValue))
+				.then(hasFormCpuValue(staticValues.defaultValue.cpuValue))
 				.wait(1)
-				.then(hasInputValue(staticValues.defaultValue.inputValue))
+				.then(hasEventsInputValue(staticValues.defaultValue.inputValue))
+				.then(hasEventsMainName('submit'))
 		})
 	})
-
 }

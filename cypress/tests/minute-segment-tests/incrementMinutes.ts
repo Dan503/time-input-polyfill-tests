@@ -2,7 +2,7 @@ import { toLeadingZero } from "@time-input-polyfill/utils"
 import { Utils } from "../../support/utils"
 
 export function incrementMinutes(utils: Utils) {
-	const { a11yHasExpectedHtml, hasReturnVal, loadPrimaryInput, setTime, use } = utils
+	const { a11yHasExpectedHtml, hasPrimaryCpuValue, loadPrimaryInput, setTime, use } = utils
 	describe('Minutes - Increment', () => {
 		it('Should increment as expected on up key press', () => {
 			loadPrimaryInput({ segment: 'minutes' }).then(() => {
@@ -12,14 +12,14 @@ export function incrementMinutes(utils: Utils) {
 						use.upArrow()
 							.should('have.value', `12:${toLeadingZero(a)} AM`)
 							.then(a11yHasExpectedHtml(`<p>${a}.</p>`))
-							.then(hasReturnVal(`00:${toLeadingZero(a)}`))
+							.then(hasPrimaryCpuValue(`00:${toLeadingZero(a)}`))
 						a++
 					}
 					// Testing that it loops back around at the end
 					use.upArrow()
 						.should('have.value', `12:00 AM`)
 						.then(a11yHasExpectedHtml(`<p>0.</p>`))
-						.then(hasReturnVal(`00:00`))
+						.then(hasPrimaryCpuValue(`00:00`))
 				})
 			})
 		})

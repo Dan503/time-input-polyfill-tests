@@ -1,7 +1,7 @@
 import { Utils } from "../../support/utils"
 
 export function fromBlankHours(utils: Utils) {
-	const { loadPrimaryInput, clearAllSegments, use, a11yHasExpectedHtml, hasReturnVal } = utils
+	const { loadPrimaryInput, clearAllSegments, use, a11yHasExpectedHtml, hasPrimaryCpuValue } = utils
 
 	describe('Hours - From blank', () => {
 		incrementBlankHours()
@@ -16,7 +16,7 @@ export function fromBlankHours(utils: Utils) {
 						.then(use.upArrow)
 						.should('have.value', '01:30 PM')
 						.then(a11yHasExpectedHtml(`<p>1.</p>`))
-						.then(hasReturnVal('13:30'))
+						.then(hasPrimaryCpuValue('13:30'))
 				})
 
 				it('Should increment blank hours from --:-- -- to 01:-- --', () => {
@@ -25,7 +25,7 @@ export function fromBlankHours(utils: Utils) {
 							.then(use.upArrow)
 							.should('have.value', '01:-- --')
 							.then(a11yHasExpectedHtml(`<p>1.</p>`))
-							.then(hasReturnVal(''))
+							.then(hasPrimaryCpuValue(''))
 					)
 				})
 			})
@@ -40,7 +40,7 @@ export function fromBlankHours(utils: Utils) {
 						.then(use.downArrow)
 						.should('have.value', '12:30 PM')
 						.then(a11yHasExpectedHtml(`<p>12.</p>`))
-						.then(hasReturnVal('12:30'))
+						.then(hasPrimaryCpuValue('12:30'))
 				})
 
 				it('Should decrement blank hours from --:-- -- to 12:-- --', () => {
@@ -49,7 +49,7 @@ export function fromBlankHours(utils: Utils) {
 							.then(use.downArrow)
 							.should('have.value', '12:-- --')
 							.then(a11yHasExpectedHtml(`<p>12.</p>`))
-							.then(hasReturnVal(''))
+							.then(hasPrimaryCpuValue(''))
 					)
 				})
 			})

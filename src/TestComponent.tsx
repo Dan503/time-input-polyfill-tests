@@ -14,14 +14,14 @@ const { labels, IDs } = getIDsAndLabels()
 const { primaryTestsLabel, eventTestsLabel } = labels
 const {
 	primaryInputID,
-	primaryValueID,
+	primaryCpuValueID: primaryValueID,
 	buttonIDs,
 	eventsInputID,
-	eventsValueID,
+	eventsCpuValueID: eventsValueID,
 	eventsMainNameID,
 	eventsAltNameID,
-	eventsFormID,
-	eventsFormValueID,
+	formID: eventsFormID,
+	formCpuValueID: eventsFormValueID,
 } = IDs
 
 export function TestComponent() {
@@ -35,7 +35,7 @@ export function TestComponent() {
 	const [eventInputValue, setEventInputValue] = useState(
 		staticValues.defaultValue.inputValue,
 	)
-	const [eventName, setEventName] = useState<EventMainName>('none')
+	const [mainEventName, setMainEventName] = useState<EventMainName>('none')
 	const [altEventName, setAltEventName] = useState<EventAltName>('none')
 	const [submittedValue, setSubmittedValue] = useState<string>(
 		staticValues.defaultValue.inputValue,
@@ -51,6 +51,7 @@ export function TestComponent() {
 
 		if (inputElem) {
 			setSubmittedValue(inputElem.value)
+			setMainEventName('submit')
 		}
 	}
 
@@ -127,19 +128,19 @@ export function TestComponent() {
 					}}
 					onFocus={(e) => {
 						setEventInputValue(e.currentTarget.value)
-						setEventName('focus')
+						setMainEventName('focus')
 					}}
 					onBlur={(e) => {
 						setEventInputValue(e.currentTarget.value)
-						setEventName('blur')
+						setMainEventName('blur')
 					}}
 					onMouseDown={(e) => {
 						setEventInputValue(e.currentTarget.value)
-						setEventName('mouseDown')
+						setMainEventName('mouseDown')
 					}}
 					onMouseUp={(e) => {
 						setEventInputValue(e.currentTarget.value)
-						setEventName('mouseUp')
+						setMainEventName('mouseUp')
 					}}
 					onClick={(e) => {
 						setEventInputValue(e.currentTarget.value)
@@ -147,15 +148,15 @@ export function TestComponent() {
 					}}
 					onKeyDown={(e) => {
 						setEventInputValue(e.currentTarget.value)
-						setEventName('keyDown')
+						setMainEventName('keyDown')
 					}}
 					onKeyUp={(e) => {
 						setEventInputValue(e.currentTarget.value)
-						setEventName('keyUp')
+						setMainEventName('keyUp')
 					}}
 				/>
 				<p id={eventsValueID}>{eventInputValue}</p>
-				<p id={eventsMainNameID}>{eventName}</p>
+				<p id={eventsMainNameID}>{mainEventName}</p>
 				<p id={eventsAltNameID}>{altEventName}</p>
 				<button id={buttonIDs.submitID} type="submit">
 					Submit form

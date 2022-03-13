@@ -2,7 +2,7 @@ import { toLeadingZero } from "@time-input-polyfill/utils"
 import { Utils } from "../../support/utils"
 
 export const manualEntry_2_5 = (utils: Utils) => {
-	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal } = utils
+	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasPrimaryCpuValue } = utils
 
 	describe('Manual entry - 2-5', () => {
 		for (let i = 2; i <= 5; i++) {
@@ -12,19 +12,19 @@ export const manualEntry_2_5 = (utils: Utils) => {
 					.type(`${i}`)
 					.should('have.value', `0${i}:30 PM`)
 					.then(a11yHasExpectedHtml(a11yInitialHtml().minutes))
-					.then(hasReturnVal(`${hr24}:30`))
+					.then(hasPrimaryCpuValue(`${hr24}:30`))
 					.type(`${i}`)
 					.should('have.value', `0${i}:0${i} PM`)
 					.then(a11yHasExpectedHtml(`<p>${i}.</p>`))
-					.then(hasReturnVal(`${hr24}:0${i}`))
+					.then(hasPrimaryCpuValue(`${hr24}:0${i}`))
 					.type(`${i}`)
 					.should('have.value', `0${i}:${i}${i} PM`)
 					.then(a11yHasExpectedHtml(a11yInitialHtml().mode))
-					.then(hasReturnVal(`${hr24}:${i}${i}`))
+					.then(hasPrimaryCpuValue(`${hr24}:${i}${i}`))
 					.type(`a`)
 					.should('have.value', `0${i}:${i}${i} AM`)
 					.then(a11yHasExpectedHtml(`<p>AM.</p>`))
-					.then(hasReturnVal(`${toLeadingZero(hr24 - 12)}:${i}${i}`))
+					.then(hasPrimaryCpuValue(`${toLeadingZero(hr24 - 12)}:${i}${i}`))
 			})
 		}
 	})

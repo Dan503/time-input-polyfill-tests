@@ -1,12 +1,12 @@
 import { Utils } from "../../support/utils"
 
 export const manualEntry_other = (utils: Utils) => {
-	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasReturnVal, use } = utils
+	const { loadPrimaryInput, a11yHasExpectedHtml, a11yInitialHtml, hasPrimaryCpuValue, use } = utils
 	describe('Manual entry - other', () => {
 		it('08:30 PM >> [ 1 > < 2 ] >> 02:30 PM', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
 				.type('1')
-				.then(hasReturnVal(`13:30`))
+				.then(hasPrimaryCpuValue(`13:30`))
 				.then(a11yHasExpectedHtml('<p>1.</p>'))
 				.then(use.rightArrow)
 				.then(a11yHasExpectedHtml(a11yInitialHtml().minutes))
@@ -15,14 +15,14 @@ export const manualEntry_other = (utils: Utils) => {
 				.type('2')
 				.should('have.value', '02:30 PM')
 				.then(a11yHasExpectedHtml(a11yInitialHtml().minutes))
-				.then(hasReturnVal(`14:30`))
+				.then(hasPrimaryCpuValue(`14:30`))
 		})
 		it('08:30 PM >> [ > 1 > < 2 ] >> 08:02 PM', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
 				.then(use.rightArrow)
 				.then(a11yHasExpectedHtml(a11yInitialHtml().minutes))
 				.type('1')
-				.then(hasReturnVal(`20:01`))
+				.then(hasPrimaryCpuValue(`20:01`))
 				.then(a11yHasExpectedHtml('<p>1.</p>'))
 				.then(use.rightArrow)
 				.then(a11yHasExpectedHtml(a11yInitialHtml().mode))
@@ -31,7 +31,7 @@ export const manualEntry_other = (utils: Utils) => {
 				.type('2')
 				.should('have.value', '08:02 PM')
 				.then(a11yHasExpectedHtml('<p>2.</p>'))
-				.then(hasReturnVal(`20:02`))
+				.then(hasPrimaryCpuValue(`20:02`))
 		})
 		it('08:30 PM >> [ > > AM ] >> 08:30 AM', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
@@ -41,32 +41,32 @@ export const manualEntry_other = (utils: Utils) => {
 				.type('AM')
 				.should('have.value', '08:30 AM')
 				.then(a11yHasExpectedHtml('<p>AM.</p>'))
-				.then(hasReturnVal(`08:30`))
+				.then(hasPrimaryCpuValue(`08:30`))
 		})
 		it('08:30 PM >> [ > > AM PM ] >> 08:30 AM', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
 				.type('{rightarrow}{rightarrow}ampm')
 				.should('have.value', '08:30 PM')
 				.then(a11yHasExpectedHtml('<p>PM.</p>'))
-				.then(hasReturnVal(`20:30`))
+				.then(hasPrimaryCpuValue(`20:30`))
 		})
 		it('08:30 PM >> [ 1 blur focus 1 ] >> 01:30 PM', () => {
 			loadPrimaryInput({ segment: 'hrs12' })
 				.type('1')
 				.should('have.value', '01:30 PM')
 				.then(a11yHasExpectedHtml('<p>1.</p>'))
-				.then(hasReturnVal(`13:30`))
+				.then(hasPrimaryCpuValue(`13:30`))
 				.blur()
 				.focus()
 				.wait(10)
 				.type('1')
 				.should('have.value', '01:30 PM')
 				.then(a11yHasExpectedHtml('<p>1.</p>'))
-				.then(hasReturnVal(`13:30`))
+				.then(hasPrimaryCpuValue(`13:30`))
 				.type('1')
 				.should('have.value', '11:30 PM')
 				.then(a11yHasExpectedHtml(a11yInitialHtml().minutes))
-				.then(hasReturnVal(`23:30`))
+				.then(hasPrimaryCpuValue(`23:30`))
 		})
 	})
 }

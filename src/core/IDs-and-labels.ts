@@ -10,7 +10,7 @@ export type Labels = {
 
 export type IDs = {
 	primaryInputID: string,
-	primaryValueID: string,
+	primaryCpuValueID: string,
 	buttonIDs: {
 		togglePolyfillID: string,
 		amID: string,
@@ -19,11 +19,13 @@ export type IDs = {
 		submitID: string,
 	},
 	eventsInputID: string,
-	eventsValueID: string,
+	eventsCpuValueID: string,
 	eventsMainNameID: string,
 	eventsAltNameID: string,
-	eventsFormID: string,
-	eventsFormValueID: string,
+	formID: string,
+	formCpuValueID: string,
+	/** Alias for `buttonIDs.submitID` */
+	formSubmitButtonID: string,
 	a11yID: string
 }
 
@@ -42,22 +44,25 @@ export const getIDsAndLabels = ({ primaryTestsLabel = 'Primary tests', eventTest
 	const primaryInputID = primaryTestsLabel.toLowerCase().replaceAll(' ', '-')
 	const eventsInputID = eventTestsLabel.toLowerCase().replaceAll(' ', '-')
 
+	const formSubmitID = `${eventsInputID}-submit`
+
 	const IDs: IDs = {
 		primaryInputID,
-		primaryValueID: `${primaryInputID}-primary-value`,
+		primaryCpuValueID: `${primaryInputID}-primary-value`,
 		buttonIDs: {
 			amID: `${primaryInputID}-am-button`,
 			pmID: `${primaryInputID}-pm-button`,
 			blankID: `${primaryInputID}-blank-button`,
 			togglePolyfillID: `${primaryInputID}-toggle-polyfill-button`,
-			submitID: `${eventsInputID}-submit`,
+			submitID: formSubmitID,
 		},
 		eventsInputID,
-		eventsValueID: `${eventsInputID}-event-value`,
+		eventsCpuValueID: `${eventsInputID}-event-value`,
 		eventsMainNameID: `${eventsInputID}-main-event-name`,
 		eventsAltNameID: `${eventsInputID}-alt-event-name`,
-		eventsFormID: `${eventsInputID}-form`,
-		eventsFormValueID: `${eventsInputID}-form-value`,
+		formID: `${eventsInputID}-form`,
+		formCpuValueID: `${eventsInputID}-form-value`,
+		formSubmitButtonID: formSubmitID,
 		a11yID,
 	}
 
