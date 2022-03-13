@@ -14,14 +14,14 @@ const { labels, IDs } = getIDsAndLabels()
 const { primaryTestsLabel, eventTestsLabel } = labels
 const {
 	primaryInputID,
-	primaryCpuValueID: primaryValueID,
+	primaryCpuValueID,
 	buttonIDs,
 	eventsInputID,
-	eventsCpuValueID: eventsValueID,
+	eventsDisplayValueID,
 	eventsMainNameID,
 	eventsAltNameID,
-	formID: eventsFormID,
-	formCpuValueID: eventsFormValueID,
+	formID,
+	formCpuValueID,
 } = IDs
 
 export function TestComponent() {
@@ -32,7 +32,7 @@ export function TestComponent() {
 		staticValues.defaultValue.cpuValue,
 	)
 	const [forcePolyfill, setForcePolyfill] = useState(true)
-	const [eventInputValue, setEventInputValue] = useState(
+	const [eventDisplayValue, setEventDisplayValue] = useState(
 		staticValues.defaultValue.inputValue,
 	)
 	const [mainEventName, setMainEventName] = useState<EventMainName>('none')
@@ -109,12 +109,12 @@ export function TestComponent() {
 			</p>
 
 			<p>
-				Returned value: "<span id={primaryValueID}>{value}</span>"
+				Returned value: "<span id={primaryCpuValueID}>{value}</span>"
 			</p>
 
 			<h2>Event tests</h2>
 
-			<form id={eventsFormID} onSubmit={handleFormSubmit}>
+			<form id={formID} onSubmit={handleFormSubmit}>
 				<label htmlFor={eventsInputID}>{eventTestsLabel}</label>
 				<br />
 				<TimeInputPolyfill
@@ -123,45 +123,45 @@ export function TestComponent() {
 					setValue={setEventsTestValue}
 					forcePolyfill
 					onChange={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setAltEventName('change')
 					}}
 					onFocus={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setMainEventName('focus')
 					}}
 					onBlur={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setMainEventName('blur')
 					}}
 					onMouseDown={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setMainEventName('mouseDown')
 					}}
 					onMouseUp={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setMainEventName('mouseUp')
 					}}
 					onClick={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setAltEventName('click')
 					}}
 					onKeyDown={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setMainEventName('keyDown')
 					}}
 					onKeyUp={(e) => {
-						setEventInputValue(e.currentTarget.value)
+						setEventDisplayValue(e.currentTarget.value)
 						setMainEventName('keyUp')
 					}}
 				/>
-				<p id={eventsValueID}>{eventInputValue}</p>
+				<p id={eventsDisplayValueID}>{eventDisplayValue}</p>
 				<p id={eventsMainNameID}>{mainEventName}</p>
 				<p id={eventsAltNameID}>{altEventName}</p>
 				<button id={buttonIDs.submitID} type="submit">
 					Submit form
 				</button>
-				<p id={eventsFormValueID}>{submittedValue}</p>
+				<p id={formCpuValueID}>{submittedValue}</p>
 			</form>
 		</div>
 	)

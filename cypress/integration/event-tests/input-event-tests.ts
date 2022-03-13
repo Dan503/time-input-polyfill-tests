@@ -1,3 +1,4 @@
 import { testSuite } from '../../support/testSuite'
 
-testSuite.tests.events.inputEvents()
+// Note: you may need to change the hasSynchronizedEvents setting
+testSuite.tests.events.inputEvents({ hasSynchronizedEvents: false })

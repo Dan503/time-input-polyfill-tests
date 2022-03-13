@@ -71,7 +71,7 @@ export class Utils {
 		bind('cyPrimaryInput')
 		bind('cyPrimaryCpuValue')
 		bind('cyEventsInput')
-		bind('cyEventsCpuValue')
+		bind('cyEventsDisplayValue')
 		bind('cyEventsMainName')
 		bind('cyEventsAltName')
 		bind('cyForm')
@@ -83,7 +83,7 @@ export class Utils {
 		bind('hasPrimaryCpuValue')
 		bind('hasFormCpuValue')
 		bind('hasEventsInputValue')
-		bind('hasEventsCpuValue')
+		bind('hasEventsDisplayValue')
 		bind('hasEventsMainName')
 		bind('hasEventsAltName')
 		bind('clickButton')
@@ -118,7 +118,7 @@ export class Utils {
 	cyPrimaryCpuValue = () => cy.get(`#${this.IDs.primaryCpuValueID}`)
 
 	cyEventsInput = () => cy.get<HTMLInputElement>(`#${this.IDs.eventsInputID}`)
-	cyEventsCpuValue = () => cy.get(`#${this.IDs.eventsCpuValueID}`)
+	cyEventsDisplayValue = () => cy.get(`#${this.IDs.eventsDisplayValueID}`)
 	cyEventsMainName = () => cy.get(`#${this.IDs.eventsMainNameID}`)
 	cyEventsAltName = () => cy.get(`#${this.IDs.eventsAltNameID}`)
 
@@ -154,8 +154,8 @@ export class Utils {
 			.should('have.value', expectation)
 			.then(this.cyEventsInput)
 	}
-	hasEventsCpuValue = (expectation: string) => () => {
-		return this.cyEventsCpuValue()
+	hasEventsDisplayValue = (expectation: string) => () => {
+		return this.cyEventsDisplayValue()
 			.should('have.text', expectation)
 			.then(this.cyEventsInput)
 	}
