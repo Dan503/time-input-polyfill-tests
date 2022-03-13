@@ -1,5 +1,6 @@
 import type { Segment } from "@time-input-polyfill/utils"
 import { toLeadingZero } from "@time-input-polyfill/utils"
+import { EventAltName, EventMainName } from "../../src/core/supportTypes"
 import { IDsAndLabelsType, Labels, IDs } from "../../src/core/IDs-and-labels"
 
 type GetCyElem = () => Cypress.Chainable<JQuery<HTMLInputElement>>
@@ -159,12 +160,12 @@ export class Utils {
 			.should('have.text', expectation)
 			.then(this.cyEventsInput)
 	}
-	hasEventsMainName = (expectation: string) => () => {
+	hasEventsMainName = (expectation: EventMainName) => () => {
 		return this.cyEventsMainName()
 			.should('have.text', expectation)
 			.then(this.cyEventsInput)
 	}
-	hasEventsAltName = (expectation: string) => () => {
+	hasEventsAltName = (expectation: EventAltName) => () => {
 		return this.cyEventsAltName()
 			.should('have.text', expectation)
 			.then(this.cyEventsInput)
